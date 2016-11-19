@@ -1,0 +1,145 @@
+
+
+<p id="top-title">以下列举了一些可应用在 HTML, JavaScript 和 CSS/SCSS 上的通用规则。</p>
+	
+	
+<!--左边导航-->
+		<aside class="w300">
+			<div >
+				<ol type="1" class="aside-nav" id="btn" >
+					<h2>一般规范</h2>
+					<li class="action"><a id="a"  href="#h1" class="hover">文件/资源命名</a></li>
+					<li><a id="a"  href="#h2">协议</a></li>
+					<li><a id="a"  href="#h3">文本缩进</a></li>
+					<li><a id="a"  href="#h4">注释</a></li>
+					<li><a id="a" href="#h5">代码检查</a></li>
+				</ol>
+			</div>
+		</aside>
+		<!--右边内容-->
+		<section class="w780" >
+			<div class="content">
+				
+				
+				<h3  id="h1"  >1、文件/资源命名</h3> 
+				<p>在 web 项目中，所有的文件名应该都遵循同一命名约定。以可读性而言，减号（-）是用来分隔文件名的不二之选。同时它也是常见的 URL 分隔符（i.e. //example.com/blog/my-blog-entry or//s.example.com/images/big-black-background.jpg），所以理所当然的，减号应该也是用来分隔资源名称的好选择。</p>	
+				<p>请确保文件命名总是以字母开头而不是数字。而以特殊字符开头命名的文件，一般都有特殊的含义与用处（比如 compass[1] 中的下划线就是用来标记跳过直接编译的文件用的）。资源的字母名称必须全为小写，这是因为在某些对大小写字母敏感的操作系统中，当文件通过工具压缩混淆后，或者人为修改过后，大小写不同而导致引用文件不同的错误，很难被发现。</p>
+				<p>还有一些情况下，需要对文件增加前后缀或特定的扩展名（比如 .min.js, .min.css），抑或一串前缀（比如 3fa89b.main.min.css）。这种情况下，建议使用点分隔符来区分这些在文件名中带有清晰意义的元数据。</p>
+				<h4>不推荐</h4> 
+				<div class="bg-block">
+					<ol type="1" class="list-decimal">
+						<li class="color-blue">MyScript.js</li>
+						<li class="color-blue">myCamelCaseName.css</li>
+						<li class="color-blue">i_love_underscores.html</li>
+						<li class="color-blue">1001-scripts.js</li>
+						<li class="color-blue">my-file-min.css</li>
+					</ol>
+				</div>
+				<h4>推荐</h4> 
+				<div class="bg-block">
+					<ol type="1" class="list-decimal">
+						<li class="color-blue">my-script.js</li>
+						<li class="color-blue">my-camel-case-name.css</li>
+						<li class="color-blue">i-love-underscores.html</li>
+						<li class="color-blue">thousand-and-one-scripts.js</li>
+						<li class="color-blue">5.my-file.min.css</li>
+					</ol>
+				</div>
+				
+				
+				<h3  id="h2" >2、协议</h3> 
+				<p>不要指定引入资源所带的具体协议。</p>
+				<p>当引入图片或其他媒体文件，还有样式和脚本时，URLs 所指向的具体路径，不要指定协议部分（http:, https:），除非这两者协议都不可用。</p>
+				<p>不指定协议使得 URL 从绝对的获取路径转变为相对的，在请求资源协议无法确定时非常好用，而且还能为文件大小节省几个字节。</p>
+
+				<h4>不推荐</h4> 
+				<div class="bg-block">
+					<ol type="1" class="list-decimal">
+						<li class="color-red">&lt;script <span class="color-green">src</span><span class="color-white">=</span><span class="color-yellow">&quot;http://cdn.com/foundation.min.js&quot;</span>&gt;&lt;/script&gt;</li>
+					</ol>
+				</div>
+				<h4>推荐</h4> 
+				<div class="bg-block">
+					<ol type="1" class="list-decimal">
+						<li class="color-red">&lt;script <span class="color-green">src</span><span class="color-white">=</span><span class="color-yellow">&quot;//cdn.com/foundation.min.js&quot;</span>&gt;&lt;/script&gt;</li>
+					</ol>
+				</div>
+				<h4>不推荐</h4> 
+				<div class="bg-block">
+					<ol type="1" class="list-decimal">
+						<li class="color-white">.<span class="color-blue">example</span> {</li>
+						<li class="color-white text-indent2"><span class="color-blue">background</span>: <span class="color-blue">url</span>(<span class="color-blue">http</span>:<span class="color-gray">//static.example.com/images/bg.jpg</span>);</li>
+						<li class="color-white">}</li>
+					</ol>
+				</div>
+				<h4>推荐</h4> 
+				<div class="bg-block">
+					<ol type="1" class="list-decimal">
+						<li class="color-white">.example {</li>
+						<li class="color-white text-indent2">background: url(//static.example.com/images/bg.jpg);</li>
+						<li class="color-white">}</li>
+					</ol>
+				</div>
+				
+				
+				<h3  id="h3" >3、文本缩进</h3> 
+				<p class="padding-bo">一次缩进两个空格。</p>
+				<div class="bg-block">
+					<ol type="1" class="list-decimal">
+						<li class="color-white">&lt;ul&gt;</li>
+						<li class="color-white text-indent2">&lt;li&gt;Fantastic&lt;/li&gt;</li>
+						<li class="color-white text-indent2">&lt;li&gt;Great&lt;/li&gt;</li>
+						<li class="color-white text-indent2">&lt;li&gt;</li>
+						<li class="color-white text-indent4">&lt;a href=&quot;#&quot;&gt;Test&lt;/a&gt;</li>
+						<li class="color-white text-indent2">&lt;li&gt;</li>
+						<li class="color-white ">&lt;/ul&gt;</li>
+						<li class="color-white ">@media screen and (min-width: 1100px) {</li>
+						<li class="color-white text-indent2">body {</li>
+						<li class="color-white text-indent4">font-size: 100%;</li>
+						<li class="color-white text-indent2">}</li>
+						<li class="color-white ">}</li>
+						<li class="color-white ">(function(){</li>
+						<li class="color-white text-indent2">var x = 10;</li>
+						<li class="color-white text-indent2">function y(a, b) {</li>
+						<li class="color-white text-indent4">return {</li>
+						<li class="color-white text-indent6">result: (a + b) * x</li>
+						<li class="color-white text-indent4">}</li>
+						<li class="color-white text-indent2">}</li>
+						<li class="color-white ">}());</li>																		
+					</ol>
+				</div>
+				
+				
+				<h3  id="h4" >4、注释</h3> 
+				<p>注释是你自己与你的小伙伴们了解代码写法和目的的唯一途径。特别是在写一些看似琐碎的无关紧要的代码时，由于记忆点不深刻，注释就变得尤为重要了。</p>
+				<p>编写自解释代码只是一个传说，没有任何代码是可以完全自解释的。而代码注释，则是永远也不嫌多。</p>
+				<p>当你写注释时一定要注意：不要写你的代码都干了些什么，而要写你的代码为什么要这么写，背后的考量是什么。当然也可以加入所思考问题或是解决方案的链接地址。</p>
+				<h4>不推荐</h4> 
+				<div class="bg-block">
+					<ol type="1" class="list-decimal">
+						<li class="color-white">var offset = 0;</li>
+						<li class="color-white ">if(includeLabels) {</li>
+						<li class="color-white text-indent2"><span class="color-gray">// Add offset of 20</span></li>
+						<li class="color-white text-indent2">offset = 20;</li>
+						<li class="color-white ">}</li>																
+					</ol>
+				</div>
+				<h4>推荐</h4> 
+				<div class="bg-block">
+					<ol type="1" class="list-decimal">
+						<li class="color-white">var offset = 0;</li>
+						<li class="color-white ">if(includeLabels) {</li>
+						<li class="color-white text-indent2"><span class="color-gray"> // If the labels are included we need to have a minimum offset of 20 pixels</span></li>
+						<li class="color-white text-indent2"><span class="color-gray">// We need to set it explicitly because of the following bug: http://somebrowservendor.com/issue-tracker/ISSUE-1</span></li>
+						<li class="color-white text-indent2">offset = 20;</li>
+						<li class="color-white ">}</li>																
+					</ol>
+				</div>
+				<p>一些注释工具可以帮助你写出更好的注释。<a>JSDoc</a> 或 <a>YUIDoc</a> 就是用来写 JavaScript 注释用的。你甚至可以使用工具来为这些注释生成文档，这也是激励开发者们写注释的一个好方法，因为一旦有了这样方便的生成文档的工具，他们通常会开始花更多时间在注释细节上。</p>
+				
+				
+				<h3  id="h5" >5、代码检查</h3> 
+				<p>对于比较宽松自由的编程语言来说，严格遵循编码规范和格式化风格指南就显得极为重要。遵循规范固然很好，但是有自动化流程来确保其执行情况，岂不更佳。Trust is good, control is better.</p>
+				<p>对于 JavaScript，建议使用 <a>JSLint</a>或<a>JSHint</a>。</p>
+			</div>
+		</section>

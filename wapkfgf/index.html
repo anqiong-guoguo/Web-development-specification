@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <title>善友汇-前端开发规范</title>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<!--头部-->
+    <div data-role="header" class="jqm-header ui-header ui-header-fixed ui-bar-inherit" role="banner">
+        <h2 class="ui-title" id="title-h2" role="heading" aria-level="1"><a href="#" title="jQuery Mobile Demos home" class="ui-link title-h2">web前端开发规范</a></h2>
+        <a href="#" class="jqm-navmenu-link ui-nodisc-icon ui-alt-icon ui-btn-left ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all" data-role="button" role="button">home</a>
+        <a href="#" class="jqm-search-link ui-nodisc-icon ui-alt-icon ui-btn-right ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" data-role="button" role="button">menu</a>
+        <nav data-role="navbar">
+            <ul class="ui-grid-c">
+                <li class="ui-block-a"><a href="#" class="ui-link ui-btn">一般规范</a></li>
+                <li class="ui-block-b"><a href="#" class="ui-link ui-btn">HTML规范</a></li>
+                <li class="ui-block-c"><a href="#" class="ui-link ui-btn">JS规范</a></li>
+                <li class="ui-block-d"><a href="#" class="ui-link ui-btn">CSS/SCSS</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!--内容部分-->
+    <div data-role="main" id="content">
+        <!--侧边栏-->
+        <div class="" id="list-item">
+            <ul data-role="listview" data-inset="false" data-theme="a" data-divider-theme="a" data-icon="false" class="jqm-list ui-listview ui-group-theme-a">
+            </ul>
+        </div>
+        <!--文章内容-->
+        <div class="qianyan" id="text-content">
+            <h1>前&nbsp;言</h1>
+            <p>
+                这是一份旨在增强团队的开发协作，提高代码质量和打造开发基石的编码风格规范，其中包含了 HTML, JavaScript 和 CSS/SCSS 这几个部分。我们知道，当一个团队开始指定并实行编码规范的话，错误就会变得更加显而易见。如果一段特定的代码不符合规范的话，它有可能只是代码风格错误，而也有可能会是 bug。早期指定规范就使得代码审核得以更好的开展，并且可以更精确的地定位到错误。只要开发者们能够保证源代码源文件都严格遵循规范，那接下去所使用的混淆、压缩和编译工具则可投其所好不尽相同。
+            </p>
+        </div>
+    </div>
+<!--脚部版本-->
+    <div data-tap-toggle="false" class="jqm-footer ui-footer ui-bar-inherit slideup" id="footer">
+        <p class="footer-p">研发部web前端开发规范<span class="jqm-version">0.0.1</span>版本</p>
+        <p class="footer-p">Copyright 2016 善友汇</p>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.js"></script>
+    <script src="js/flexible.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

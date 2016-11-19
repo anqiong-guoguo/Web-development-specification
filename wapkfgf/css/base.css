@@ -1,0 +1,33 @@
+/*通用样式*/
+/*关于移动端字体的定义：
+*1.各手机系统都有自己的默认字体，且都不支持微软雅黑
+*2.如无特殊需求，手机移动端无需定义中文字体，使用默认字体即可
+*3.英文字体和数字可使用Helvetica，三种系统都支持
+*/
+body{ margin: 0;padding: 0;font-family:LiHei Pro Medium,STHeiti,Helvetica;background:rgb(245,245,245);color:rgb(153,153,153);}
+body,html{width: 100%;}
+*{text-decoration: none;list-style: none;}/*通配符清除所有自带样式，和下划线*/
+img{border: 0;vertical-align: middle;}
+ul,li,dl,dd,dt,p,ol,h1,h2,h3,h4,h5{font-size: 1.2rem;font-weight: normal;padding: 0;margin: 0;}
+a,input,button{ outline:none;border:none;}
+input{word-wrap:break-word; word-break:break-all;outline: none;}
+/*通用的class样式*/
+.wrap{margin: 0 auto;}/*居中*/
+.fl{float: left;}
+.fr{float: right;}
+.index{overflow: hidden;}/*清除浮动*/
+.clear:after{content: "";display: block;clear: both;}/*清除浮动高级方法*/
+/*section{max-width: 750px;margin:0 auto;}*/
+/*浅色的线*/
+/*.shallow-line{*/
+  /*height:1px;*/
+  /*transform: scaleY(0.5);*/
+  /*background: rgb(220,220,220);*/
+/*}*/
+/*!*深色的线*!*/
+/*.dark-line{*/
+  /*height:1px;*/
+  /*margin:0 10px;*/
+  /*transform: scaleY(0.5);*/
+  /*background: rgb(153,153,153);*/
+/*}*/

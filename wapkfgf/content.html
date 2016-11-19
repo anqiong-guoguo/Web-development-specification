@@ -1,0 +1,2580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面内容</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div id="text-content">
+        <!--一般规范-->
+        <div id="txt1">
+            <!--一级标题-->
+            <h1>1、一般规范</h1>
+            <p>
+                以下章节列举了一些可应用在 HTML, JavaScript 和 CSS/SCSS 上的通用规则。
+            </p>
+            <div>
+                <h2 id="t1-1" name="t1-1">1.1、文件/资源命名</h2><!--二级标题-->
+                <!--段落内容-->
+                <p>在 web 项目中，所有的文件名应该都遵循同一命名约定。以可读性而言，减号（-）是用来分隔文件名的不二之选。同时它也是常见的 URL 分隔符（i.e. //example.com/blog/my-blog-entry or//s.example.com/images/big-black-background.jpg），所以理所当然的，减号应该也是用来分隔资源名称的好选择。</p>
+                <p>请确保文件命名总是以字母开头而不是数字。而以特殊字符开头命名的文件，一般都有特殊的含义与用处（比如 compass[1] 中的下划线就是用来标记跳过直接编译的文件用的）。</p>
+                <p>资源的字母名称必须全为小写，这是因为在某些对大小写字母敏感的操作系统中，当文件通过工具压缩混淆后，或者人为修改过后，大小写不同而导致引用文件不同的错误，很难被发现。</p>
+                <p>还有一些情况下，需要对文件增加前后缀或特定的扩展名（比如 .min.js, .min.css），抑或一串前缀（比如 3fa89b.main.min.css）。这种情况下，建议使用点分隔符来区分这些在文件名中带有清晰意义的元数据。</p>
+                 <p>不推荐</p>
+                <!--代码部分-->
+                <pre>
+<span>
+    1.MyScript.js
+    2.myCamelCaseName.css
+    3.i_love_underscores.html
+    4.1001-scripts.js
+    5.my-file-min.css</span>
+            </pre>
+                <p>推荐</p>
+<pre>
+<span>
+    1.	my-script.js
+    2.	my-camel-case-name.css
+    3.	i-love-underscores.html
+    4.	thousand-and-one-scripts.js
+    5.	my-file.min.css
+</span>
+</pre>
+                <h2 id="t1-2" name="t1-2">1.2、协议</h2>
+                <p>不要指定引入资源所带的具体协议。当引入图片或其他媒体文件，还有样式和脚本时，URLs 所指向的具体路径，不要指定协议部分（http:, https:），除非这两者协议都不可用。不指定协议使得 URL 从绝对的获取路径转变为相对的，在请求资源协议无法确定时非常好用，而且还能为文件大小节省几个字节。
+                </p>
+                <p>不推荐</p>
+                <pre>
+<span>
+    1.&lt;script src=&quot;http://cdn.com/foundation.min.js&quot;&gt;&lt;/script&gt;</span>
+                </pre>
+                <p>推荐</p>
+                <pre>
+<span>
+    1.&lt;script src="//cdn.com/foundation.min.js"&gt;&lt;/script&gt;</span>
+                </pre>
+                <p>不推荐</p>
+                <pre>
+<span>
+    1.	.example {
+    2.	  background: url(http://static.example.com/images/bg.jpg);
+    3.	}
+</span>
+                </pre>
+                <p>推荐</p>
+                <pre>
+<span>
+    1.	.example {
+    2.	  background: url(//static.example.com/images/bg.jpg);
+    3.	}
+</span>
+                </pre>
+                <h2 id="t1-3" name="t1-3">1.3、文本缩进</h2>
+                <p>一次缩进两个空格。</p>
+                <pre>
+<span>
+    1.&lt;ul>
+    2.  &lt;li>Fantastic&lt;/li>
+    3.  &lt;li>Great&lt;/li>
+    4.  &lt;li>
+    5.    &lt;a href="#">Test&lt;/a>
+    6.  &lt;/li>
+    7.&lt;/ul>
+    1.@media screen and (min-width: 1100px) {
+    2.  body {
+    3.    font-size: 100%;
+    4.  }
+    5.}
+
+    1.(function(){
+    2.  var x = 10;
+    3.
+    4.	  function y(a, b) {
+    5.    return {
+    6.      result: (a + b) * x
+    7.    }
+    8.
+    9.  }
+    10.}());
+</span>
+                </pre>
+                <h2 id="t1-4" name="t1-4">1.4、注释</h2>
+                <p>注释是你自己与你的小伙伴们了解代码写法和目的的唯一途径。特别是在写一些看似琐碎的无关紧要的代码时，由于记忆点不深刻，注释就变得尤为重要了。编写自解释代码只是一个传说，没有任何代码是可以完全自解释的。而代码注释，则是永远也不嫌多。
+                </p>
+                <p>当你写注释时一定要注意：不要写你的代码都干了些什么，而要写你的代码为什么要这么写，背后的考量是什么。当然也可以加入所思考问题或是解决方案的链接地址。</p>
+                <p>不推荐</p>
+                <pre>
+<span>
+    1.var offset = 0;
+    2.
+    3.if(includeLabels) {
+    4.  // Add offset of 20
+    5.  offset = 20;
+    6.}
+</span>
+                </pre>
+                <p>推荐</p>
+<pre>
+<span>
+    1.var offset = 0;
+    2.
+    3.if(includeLabels) {
+    4.  // If the labels are included we need to have a minimum offset of 20 pixels
+    5.  // We need to set it explicitly because of the following bug: http://somebrowservendor.com/issue-tracker/ISSUE-1
+    6.  offset = 20;
+    7.}
+</span>
+</pre>
+                <p>
+                    一些注释工具可以帮助你写出更好的注释。JSDoc 或 YUIDoc 就是用来写 JavaScript 注释用的。你甚至可以使用工具来为这些注释生成文档，这也是激励开发者们写注释的一个好方法，因为一旦有了这样方便的生成文档的工具，他们通常会开始花更多时间在注释细节上。
+                </p>
+                <h2 id="t1-5" name="t1-5">1.5、代码检查</h2>
+                <p>
+                    对于比较宽松自由的编程语言来说，严格遵循编码规范和格式化风格指南就显得极为重要。遵循规范固然很好，但是有自动化流程来确保其执行情况，岂不更佳。Trust is good, control is better.
+                </p>
+                <p>
+                    对于 JavaScript，建议使用 JSLint 或 JSHint。
+                </p>
+            </div>
+        </div>
+
+        <!--第二规范-->
+        <div id="txt2">
+            <h1>2、HTML 规范</h1>
+            <h2 id="t2-1" name="t2-1">
+                2.1、文档类型
+            </h2>
+            <p>
+                推荐使用 HTML5 的文档类型申明： &lt;!DOCTYPE html&gt;.（建议使用 text/html 格式的 HTML。避免使用 XHTML。XHTML 以及它的属性，比如application/xhtml+xml 在浏览器中的应用支持与优化空间都十分有限）。HTML 中最好不要将无内容元素[1] 的标签闭合，例如：使用 &lt;br&gt; 而非 &lt;br /&gt;.
+            </p>
+            <h2 id="t2-2" name="t2-2">
+                2.2、HTML 验证
+            </h2>
+            <p>
+                一般情况下，建议使用能通过标准规范验证的 HTML 代码，除非在性能优化和控制文件大小上不得不做出让步。使用诸如 W3C HTML validator 这样的工具来进行检测。
+            </p>
+            <p>规范化的 HTML 是显现技术要求与局限的显著质量基线，它促进了 HTML 被更好地运用。</p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.&lt;title>Test&lt;/title>
+    2.&lt;article>This is only a test.
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.&lt;!DOCTYPE html>
+    2.&lt;meta charset="utf-8">
+    3.&lt;title>Test&lt;/title>
+    4.&lt;article>This is only a test.&lt;/article>
+</span>
+            </pre>
+            <h2 id="t2-3" name="t2-3">2.3、省略可选标签</h2>
+            <p>HTML5 规范中规定了 HTML 标签是可以省略的。但从可读性来说，在开发的源文件中最好不要这样做，因为省略标签可能会导致一些问题。</p>
+            <p>
+                省略一些可选的标签确实使得页面大小减少，这很有用，尤其是对于一些大型网站来说。为了达到这一目的，我们可以在开发后期对页面进行压缩处理，在这个环节中这些可选的标签完全就可以省略掉了。
+            </p>
+            <h2 id="t2-4" name="t2-4">2.4、脚本加载</h2>
+            <p>
+                出于性能考虑，脚本异步加载很关键。一段脚本放置在 &lt;head> 内，比如&lt;script src="main.js">&lt;/script>，其加载会一直阻塞 DOM 解析，直至它完全地加载和执行完毕。这会造成页面显示的延迟。特别是一些重量级的脚本，对用户体验来说那真是一个巨大的影响。
+            </p>
+            <p>
+                异步加载脚本可缓解这种性能影响。如果只需兼容 IE10+，可将 HTML5 的 async 属性加至脚本中，它可防止阻塞 DOM 的解析，甚至你可以将脚本引用写在 &lt;head> 里也没有影响。
+            </p>
+            <p>
+                如需兼容老旧的浏览器，实践表明可使用用来动态注入脚本的脚本加载器。你可以考虑 yepnope 或labjs。注入脚本的一个问题是：一直要等到 CSS 对象文档已就绪，它们才开始加载（短暂地在 CSS 加载完毕之后），这就对需要及时触发的 JS 造成了一定的延迟，这多多少少也影响了用户体验吧。终上所述，兼容老旧浏览器(IE9-)时，应该遵循以下最佳实践。
+            </p>
+            <p>
+                脚本引用写在 body 结束标签之前，并带上 async 属性。这虽然在老旧浏览器中不会异步加载脚本，但它只阻塞了 body 结束标签之前的 DOM 解析，这就大大降低了其阻塞影响。而在现代浏览器中，脚本将在 DOM 解析器发现 body 尾部的 script 标签才进行加载，此时加载属于异步加载，不会阻塞 CSSOM（但其执行仍发生在 CSSOM 之后）。
+            </p>
+            <p>所有浏览器中，推荐</p>
+            <pre>
+<span>
+    1.&lt;html>
+    2.  &lt;head>
+    3.    &lt;link rel="stylesheet" href="main.css">
+    4.  &lt;/head>
+    5.  &lt;body>
+    6.    &lt;!-- body goes here -->
+    7.
+    8.	    &lt;script src="main.js" async>&lt;/script>
+    9.  &lt;/body>
+    10.&lt;/html>
+</span>
+            </pre>
+            <p>只在现代浏览器中，推荐</p>
+            <pre>
+<span>
+    1.&lt;html>
+    2.  &lt;head>
+    3.    &lt;link rel="stylesheet" href="main.css">
+    4.    &lt;script src="main.js" async>&lt;/script>
+    5.  &lt;/head>
+    6.  &lt;body>
+    7.    &lt;!-- body goes here -->
+    8.  &lt;/body>
+    9.&lt;/html>
+</span>
+            </pre>
+            <h2 id="t2-5" name="t2-5">2.5、语义化</h2>
+            <p>
+                根据元素（有时被错误地称作“标签”）其被创造出来时的初始意义来使用它。打个比方，用 heading 元素来定义头部标题，p 元素来定义文字段落，用 a 元素来定义链接锚点，等等。
+            </p>
+            <p>
+                有根据有目的地使用 HTML 元素，对于可访问性、代码重用、代码效率来说意义重大。
+            </p>
+            <p>
+                以下示例列出了一些的语义化 HTML 主要情况：
+            </p>
+            <p>
+                不推荐
+            </p>
+            <pre>
+<span>
+    1.&lt;b>My page title&lt;/b>
+    2.&lt;div class="top-navigation">
+    3.  &lt;div class="nav-item">&lt;a href="#home">Home&lt;/a>&lt;/div>
+    4.  &lt;div class="nav-item">&lt;a href="#news">News&lt;/a>&lt;/div>
+    5.  &lt;div class="nav-item">&lt;a href="#about">About&lt;/a>&lt;/div>
+    6.&lt;/div>
+    7.
+    8.&lt;div class="news-page">
+    9.  &lt;div class="page-section news">
+    10.    &lt;div class="title">All news articles&lt;/div>
+    11.    &lt;div class="news-article">
+    12.      &lt;h2>Bad article&lt;/h2>
+    13.      &lt;div class="intro">Introduction sub-title&lt;/div>
+    14.      &lt;div class="content">This is a very bad example for HTML semantics&lt;/div>
+    15.      &lt;div class="article-side-notes">I think I'm more on the side and should not receive the main credits&lt;/div>
+    16.      &lt;div class="article-foot-notes">
+    17.        This article was created by David &lt;div class="time">2014-01-01 00:00&lt;/div>
+    18.      &lt;/div>
+    19.    &lt;/div>
+    20.
+    21.	    &lt;div class="section-footer">
+    22.      Related sections: Events, Public holidays
+    23.    &lt;/div>
+    24.  &lt;/div>
+    25.&lt;/div>
+    26.
+    27.&lt;div class="page-footer">
+    28.  Copyright 2014
+    29.&lt;/div>
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+                <span>
+    1.&lt;!-- The page header should go into a header element -->
+    2.&lt;header>
+    3.  &lt;!-- As this title belongs to the page structure it's a heading and h1 should be used -->
+    4.  &lt;h1>My page title&lt;/h1>
+    5.&lt;/header>
+    6.
+    7.&lt;!-- All navigation should go into a nav element -->
+    8.&lt;nav class="top-navigation">
+    9.  &lt;!-- A listing of elements should always go to UL (OL for ordered listings) -->
+    10.  &lt;ul>
+    11.    &lt;li class="nav-item">&lt;a href="#home">Home&lt;/a>&lt;/li>
+    12.    &lt;li class="nav-item">&lt;a href="#news">News&lt;/a>&lt;/li>
+    13.    &lt;li class="nav-item">&lt;a href="#about">About&lt;/a>&lt;/li>
+    14.  &lt;/ul>
+    15.&lt;/nav>
+    16.
+    17.&lt;!-- The main part of the page should go into a main element (also use role="main" for accessibility) -->
+    18.&lt;main class="news-page" role="main">
+    19.  &lt;!-- A section of a page should go into a section element. Divide a page into sections with semantic elements. -->
+    20.  &lt;section class="page-section news">
+    21.    &lt;!-- A section header should go into a section element -->
+    22.    &lt;header>
+    23.      &lt;!-- As a page section belongs to the page structure heading elements should be used (in this case h2) -->
+    24.      &lt;h2 class="title">All news articles&lt;/h2>
+    25.    &lt;/header>
+    26.
+    27.    &lt;!-- If a section / module can be seen as an article (news article, blog entry, products teaser, any other
+    28.     re-usable module / section that can occur multiple times on a page) a article element should be used -->
+    29.    &lt;article class="news-article">
+    30.      &lt;!-- An article can contain a header that contains the summary / introduction information of the article -->
+    31.      &lt;header>
+    32.        &lt;!-- As a article title does not belong to the overall page structure there should not be any heading tag! -->
+    33.        &lt;div class="article-title">Good article&lt;/div>
+    34.        &lt;!-- Small can optionally be used to reduce importance -->
+    35.        &lt;small class="intro">Introduction sub-title&lt;/small>
+    36.      &lt;/header>
+    37.
+    38.      &lt;!-- For the main content in a section or article there is no semantic element -->
+    39.      &lt;div class="content">
+    40.        &lt;p>This is a good example for HTML semantics&lt;/p>
+    41.      &lt;/div>
+    42.      &lt;!-- For content that is represented as side note or less important information in a given context use aside -->
+    43.      &lt;aside class="article-side-notes">
+    44.        &lt;p>I think I'm more on the side and should not receive the main credits&lt;/p>
+    45.      &lt;/aside>
+    46.      &lt;!-- Articles can also contain footers. If you have footnotes for an article place them into a footer element -->
+    47.      &lt;footer class="article-foot-notes">
+    48.        &lt;!-- The time element can be used to annotate a timestamp. Use the datetime attribute to specify ISO time
+    49.         while the actual text in the time element can also be more human readable / relative -->
+    50.        &lt;p>This article was created by David &lt;time datetime="2014-01-01 00:00" class="time">1 month ago&lt;/time>&lt;/p>
+    51.      &lt;/footer>
+    52.    &lt;/article>
+    53.
+    54.    &lt;!-- In a section, footnotes or similar information can also go into a footer element -->
+    55.    &lt;footer class="section-footer">
+    56.      &lt;p>Related sections: Events, Public holidays&lt;/p>
+    57.    &lt;/footer>
+    58.  &lt;/section>
+    59.&lt;/main>
+    60.
+    61.&lt;!-- Your page footer should go into a global footer element -->
+    62.&lt;footer class="page-footer">
+    63.  Copyright 2014
+    64.&lt;/footer>
+                </span>
+            </pre>
+            <h2 id="t2-6" name="t2-6">2.6、多媒体回溯</h2>
+            <p>
+                对页面上的媒体而言，像图片、视频、canvas 动画等，要确保其有可替代的接入接口。图片文件我们可采用有意义的备选文本（alt），视频和音频文件我们可以为其加上说明文字或字幕。
+            </p>
+            <p>
+                提供可替代内容对可用性来说十分重要。试想，一位盲人用户如何能知晓一张图片是什么，要是没有 @alt 的话。（图片的 alt 属性是可不填写内容的，纯装饰性的图片就可用这么做：alt=""）。
+            </p>
+            <p>
+                不推荐
+            </p>
+            <pre>
+<span>
+    1.&lt;img src="huge-spaceship-approaching-earth.jpg" alt="Header image">
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.&lt;img src="luke-skywalker.jpg" alt="Luke skywalker riding an alien horse">
+</span>
+            </pre>
+            <p>
+                尽量用 alt 标签去描述图片，设想你需要对于那些只能通过语音或者看不见图片的用户表达图片到底是什么。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.&lt;img src="huge-spaceship-approaching-earth.jpg" alt="Header image">
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.&lt;img src="huge-spaceship-approaching-earth.jpg" alt="A huge spaceship that is approaching the earth">
+</span>
+            </pre>
+            <h2 id="t2-7" name="t2-7">2.7、关注点分离</h2>
+            <p>
+                理解 web 中如何和为何区分不同的关注点，这很重要。这里的关注点主要指的是：信息（HTML 结构）、外观（CSS）和行为（JavaScript）。为了使它们成为可维护的干净整洁的代码，我们要尽可能的将它们分离开来。
+            </p>
+            <p>
+                严格地保证结构、表现、行为三者分离，并尽量使三者之间没有太多的交互和联系。就是说，尽量在文档和模板中只包含结构性的 HTML；而将所有表现代码，移入样式表中；将所有动作行为，移入脚本之中。
+            </p>
+            <p>
+                在此之外，为使得它们之间的联系尽可能的小，在文档和模板中也尽量少地引入样式和脚本文件。
+            </p>
+            <p>
+                清晰的分层意味着：<br>
+                •	不使用超过一到两张样式表（i.e. main.css, vendor.css）<br>
+                •	不使用超过一到两个脚本（学会用合并脚本）<br>
+                •	不使用行内样式（&lt;style>.no-good {}&lt;/style>）<br>
+                •	不在元素上使用 style 属性（&lt;hr style="border-top: 5px solid black">）<br>
+                •	不使用行内脚本（&lt;script>alert('no good')&lt;/script>）<br>
+                •	不使用表象元素（i.e. &lt;b>, &lt;u>, &lt;center>, &lt;font>, &lt;b>）<br>
+                •	不使用表象 class 名（i.e. red, left, center）
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.&lt;!DOCTYPE html>
+    2.&lt;html>
+    3.&lt;head>
+    4.  &lt;link rel="stylesheet" href="base.css">
+    5.  &lt;link rel="stylesheet" href="grid.css">
+    6.  &lt;link rel="stylesheet" href="type.css">
+    7.  &lt;link rel="stylesheet" href="modules/teaser.css">
+    8.&lt;/head>
+    9.&lt;body>
+    10.  &lt;h1 style="font-size: 3rem">&lt;/h1>
+    11.  &lt;b>I'm a subtitle and I'm bold!&lt;/b>
+    12.  &lt;center>Dare you center me!&lt;/center>
+    13.  &lt;script>
+    14.    alert('Just dont...');
+    15.  &lt;/script>
+    16.  &lt;div class="red">I'm important!&lt;/div>
+    17.&lt;/body>
+    18.&lt;/html>
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.&lt;!DOCTYPE html>
+    2.&lt;html>
+    3.&lt;head>
+    4.  &lt;!-- Concatinate your style sheets into a single one -->
+    5.  &lt;link rel="stylesheet" href="main.css">
+    6.&lt;/head>
+    7.&lt;body>
+    8.  &lt;!-- Don't use style attributes but assign sensible classes and apply styles in the stylesheet -->
+    9.  &lt;h1 class="title">&lt;/h1>
+    10.  &lt;!-- Don't use presentational elements and assign sensible classes -->
+    11.  &lt;div class="sub-title">I'm a subtitle and I'm bold!&lt;/div>
+    12.  &lt;!-- Maybe your comments get centered in your presentation but that decision is up to the stylesheet -->
+    13.  &lt;span class="comment">Dare you center me!&lt;/span>
+    14.  &lt;!-- You wanted to make it red because it's important so then also name the class important and decide in the stylesheet
+    15.   what you want to do with it -->
+    16.  &lt;div class="important">I'm important!&lt;/div>
+    17.
+    18.  &lt;!-- Put all your scripts into files and concatinate them into a single one -->
+    19.  &lt;script async src="main.js">&lt;/script>
+    20.&lt;/body>
+    21.&lt;/html>
+</span>
+            </pre>
+            <h2 id="t2-8" name="t2-8">2.8、HTML 内容至上</h2>
+            <p>
+                不要让非内容信息污染了你的 HTML。现在貌似有一种倾向：通过 HTML 来解决设计问题，这是显然是不对的。HTML 就应该只关注内容。
+            </p>
+            <p>
+                HTML 标签的目的，就是为了不断地展示内容信息。<br>
+                •	不要引入一些特定的 HTML 结构来解决一些视觉设计问题<br>
+                •	不要将 img 元素当做专门用来做视觉设计的元素<br>
+                以下例子展示了误将 HTML 用来解决设计问题的这两种情况：
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.&lt;!-- We should not introduce an additional element just to solve a design problem  -->
+    2.&lt;span class="text-box">
+    3.  &lt;span class="square">&lt;/span>
+    4.  See the square next to me?
+    5.&lt;/span>
+
+    1..text-box > .square {
+    2.  display: inline-block;
+    3.  width: 1rem;
+    4.  height: 1rem;
+    5.  background-color: red;
+    6.}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.&lt;!-- That's clean markup! -->
+    2.&lt;span class="text-box">
+    3.  See the square next to me?
+    4.&lt;/span>
+
+    1./* We use a :before pseudo element to solve the design problem of placing a colored square in front of the text content */
+    2..text-box:before {
+    3.  content: "";
+    4.  display: inline-block;
+    5.  width: 1rem;
+    6.  height: 1rem;
+    7.  background-color: red;
+    8.}
+</span>
+            </pre>
+            <p>
+                图片和 SVG 图形能被引入到 HTML 中的唯一理由是它们呈现出了与内容相关的一些信息。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.&lt;!-- Content images should never be used for design elements!  -->
+    2.&lt;span class="text-box">
+    3.  &lt;img src="square.svg" alt="Square" />
+    4.  See the square next to me?
+    5.&lt;/span>
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.&lt;!-- That's clean markup! -->
+    2.&lt;span class="text-box">
+    3.  See the square next to me?
+    4.&lt;/span>
+    1./* We use a :before pseudo element with a background image to solve the problem */
+    2..text-box:before {
+    3.  content: "";
+    4.  display: inline-block;
+    5.  width: 1rem;
+    6.  height: 1rem;
+    7.  background: url(square.svg) no-repeat;
+    8.  background-size: 100%;
+    9.}
+</span>
+            </pre>
+            <h2 id="t2-9" name="t2-9">2.9、Type 属性</h2>
+            <p>
+                省略样式表与脚本上的 type 属性。鉴于 HTML5 中以上两者默认的 type 值就是 text/css 和 text/javascript，所以 type 属性一般是可以忽略掉的。甚至在老旧版本的浏览器中这么做也是安全可靠的。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.&lt;link rel="stylesheet" href="main.css" type="text/css">
+    2.&lt;script src="main.js" type="text/javascript">&lt;/script>
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.&lt;link rel="stylesheet" href="main.css">
+    2.&lt;script src="main.js">&lt;/script>
+</span>
+            </pre>
+            <h2 id="t2-10" name="t2-10">2.10、可用性</h2>
+            <p>
+                如果 HTML5 语义化标签使用得当，许多可用性问题已经引刃而解。ARIA 规则在一些语义化的元素上可为其添上默认的可用性角色属性，使用得当的话已使网站的可用性大部分成立。假如你使用 nav,aside, main, footer 等元素，ARIA 规则会在其上应用一些关联的默认值。更多细节可参考 ARIA specification另外一些角色属性则能够用来呈现更多可用性情景（i.e. role="tab"）。
+            </p>
+            <h2 id="t2-11" name="t2-11">2.11、Tab Index 在可用性上的运用</h2>
+            <p>
+                检查文档中的 tab 切换顺序并传值给元素上的 tabindex，这可以依据元素的重要性来重新排列其 tab 切换顺序。你可以设置 tabindex="-1" 在任何元素上来禁用其 tab 切换。
+            </p>
+            <p>
+                当你在一个默认不可聚焦的元素上增加了功能，你应该总是为其加上 tabindex 属性使其变为可聚焦状态，而且这也会激活其 CSS 的伪类 :focus。选择合适的 tabindex 值，或是直接使用 tabindex="0" 将元素们组织成同一 tab 顺序水平，并强制干预其自然阅读顺序。
+            </p>
+            <h2 id="t2-12" name="t2-12">2.12、微格式在 SEO 和可用性上的运用</h2>
+            <p>
+                如果 SEO 和可用性环境条件允许的话，建议考虑采用微格式。微格式是通过在元素标签上申明一系列特定数据来达成特定语义的方法。
+            </p>
+            <p>
+                谷歌、微软和雅虎对如何使用这些额外的数据一定程度上的达成一致，如果正确的使用，这将给搜索引擎优化带来巨大的好处。
+            </p>
+            <p>
+                你可以访问 schema.org 获得更多内容细节。看一个电影网站的简单例子：
+            </p>
+            <p>不带微格式</p>
+            <pre>
+<span>
+    1.&lt;div>
+    2. &lt;h1>Avatar&lt;/h1>
+    3. &lt;span>Director: James Cameron (born August 16, 1954)&lt;/span>
+    4. &lt;span>Science fiction&lt;/span>
+    5. &lt;a href="../movies/avatar-theatrical-trailer.html">Trailer&lt;/a>
+    6.&lt;/div>
+</span>
+            </pre>
+            <p>带微格式</p>
+            <pre>
+<span>
+    1.&lt;div itemscope itemtype ="http://schema.org/Movie">
+    2.  &lt;h1 itemprop="name">Avatar&lt;/h1>
+    3.  &lt;div itemprop="director" itemscope itemtype="http://schema.org/Person">
+    4.  Director: &lt;span itemprop="name">James Cameron&lt;/span> (born &lt;span itemprop="birthDate">August 16, 1954)&lt;/span>
+    5.  &lt;/div>
+    6.  &lt;span itemprop="genre">Science fiction&lt;/span>
+    7.  &lt;a href="../movies/avatar-theatrical-trailer.html" itemprop="trailer">Trailer&lt;/a>
+    8.&lt;/div>
+</span>
+            </pre>
+            <h2 id="t2-13" name="t2-13">2.13、ID 和锚点</h2>
+            <p>
+                通常一个比较好的做法是将页面内所有的头部标题元素都加上 ID. 这样做，页面 URL 的 hash 中带上对应的 ID 名称，即形成描点，方便跳转至对应元素所处位置。
+            </p>
+            <p>
+                打个比方，当你在浏览器中输入 URL http://your-site.com/about#best-practices，浏览器将定位至以下 H3 上。
+            </p>
+            <pre>
+<span>
+1.&lt;h3 id="best-practices">Best practices&lt;/h3>
+</span>
+            </pre>
+            <h2 id="t2-14" name="t2-14">2.14、格式化规则</h2>
+            <p>
+                在每一个块状元素，列表元素和表格元素后，加上一新空白行，并对其子孙元素进行缩进。内联元素写在一行内，块状元素还有列表和表格要另起一行。
+            </p>
+            <p>
+                （如果由于换行的空格引发了不可预计的问题，那将所有元素并入一行也是可以接受的，格式警告总好过错误警告）。
+            </p>
+            <pre>
+<span>
+    1.&lt;blockquote>
+    2.  &lt;p>&lt;em>Space&lt;/em>, the final frontier.&lt;/p>
+    3.&lt;/blockquote>
+    4.
+    5.&lt;ul>
+    6.  &lt;li>Moe&lt;/li>
+    7.  &lt;li>Larry&lt;/li>
+    8.  &lt;li>Curly&lt;/li>
+    9.&lt;/ul>
+    10.
+    11.&lt;table>
+    12.  &lt;thead>
+    13.    &lt;tr>
+    14.      &lt;th scope="col">Income&lt;/th>
+    15.      &lt;th scope="col">Taxes&lt;/th>
+    16.    &lt;/tr>
+    17. &lt;/thead>
+    18.  &lt;tbody>
+    19.    &lt;tr>
+    20.      &lt;td>$ 5.00&lt;/td>
+    21.      &lt;td>$ 4.50&lt;/td>
+    22.    &lt;/tr>
+    23.  &lt;/tbody>
+    24.&lt;/table>
+</span>
+            </pre>
+            <h2 id="t2-15" name="t2-15">2.15、HTML 引号</h2>
+            <p>
+                使用双引号(“”) 而不是单引号(”) 。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.&lt;div class='news-article'>&lt;/div>
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.&lt;div class="news-article">&lt;/div>
+</span>
+            </pre>
+            <p>
+                [1]: 此处的空白元素指的是以下元素：area, base, br, col, command, embed, hr, img, input, keygen,link, meta, param, source, track, wbr
+            </p>
+        </div>
+
+        <!--第三规范-->
+        <div id="txt3">
+            <h1>3、JavaScript规范</h1>
+            <h2 id="t3-1" name="t3-1">3.1、全局命名空间污染与 IIFE</h2>
+            <p>
+                总是将代码包裹成一个 IIFE(Immediately-Invoked Function Expression)，用以创建独立隔绝的定义域。这一举措可防止全局命名空间被污染。
+            </p>
+            <p>
+                IIFE 还可确保你的代码不会轻易被其它全局命名空间里的代码所修改（i.e. 第三方库，window 引用，被覆盖的未定义的关键字等等）。
+            </p>
+            <h2 id="t3-2" name="t3-2">3.2、IIFE（立即执行的函数表达式）</h2>
+            <p>
+                无论何时，想要创建一个新的封闭的定义域，那就用 IIFE。它不仅避免了干扰，也使得内存在执行完后立即释放。所有脚本文件建议都从 IIFE 开始。
+            </p>
+            <p>
+                立即执行的函数表达式的执行括号应该写在外包括号内。虽然写在内还是写在外都是有效的，但写在内使得整个表达式看起来更像一个整体，因此推荐这么做。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.(function(){})();
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.(function(){}());
+</span>
+            </pre>
+            <p>
+                so，用下列写法来格式化你的 IIFE 代码：
+            </p>
+            <pre>
+<span>
+    1.(function(){
+    2.  'use strict';
+    3.
+    4.  // Code goes here
+    5.
+    6.}());
+</span>
+            </pre>
+            <p>
+                如果你想引用全局变量或者是外层 IIFE 的变量，可以通过下列方式传参：
+            </p>
+            <pre>
+<span>
+    1.(function($, w, d){
+    2.  'use strict';
+    3.
+    4.  $(function() {
+    5.    w.alert(d.querySelectorAll('div').length);
+    6.  });
+    7.}(jQuery, window, document));
+</span>
+            </pre>
+            <h2 id="t3-3" name="t3-3">3.3、严格模式</h2>
+            <p>
+                ECMAScript 5 严格模式可在整个脚本或独个方法内被激活。它对应不同的 javascript 语境会做更加严格的错误检查。严格模式也确保了 javascript 代码更加的健壮，运行的也更加快速。严格模式会阻止使用在未来很可能被引入的预留关键字。
+            </p>
+            <p>
+                你应该在你的脚本中启用严格模式，最好是在独立的 IIFE 中应用它。避免在你的脚本第一行使用它而导致你的所有脚本都启动了严格模式，这有可能会引发一些第三方类库的问题。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.// Script starts here
+    2.'use strict';
+    3.
+    4.(function(){
+    5.
+    6.  // Your code starts here
+    7.
+    8.}());
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.(function(){
+    2.  'use strict';
+    3.
+    4.  // Your code starts here
+    5.
+    6.}());
+</span>
+            </pre>
+            <h2 id="t3-4" name="t3-4">3.4、变量声明</h2>
+            <p>
+                总是使用 var 来声明变量。如不指定 var，变量将被隐式地声明为全局变量，这将对变量难以控制。如果没有声明，变量处于什么定义域就变得不清（可以是在 Document 或 Window 中，也可以很容易地进入本地定义域）。所以，请总是使用 var 来声明变量。
+            </p>
+            <p>
+                采用严格模式带来的好处是，当你手误输入错误的变量名时，它可以通过报错信息来帮助你定位错误出处。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.x = 10;
+    2.y = 100;
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.var x = 10,
+    2.    y = 100;
+</span>
+            </pre>
+            <h2 id="t3-5" name="t3-5">3.5、JavaScript 的定义域和定义域提升</h2>
+            <p>
+                在 JavaScript 中变量和方法定义会自动提升到执行之前。JavaScript 只有 function 级的定义域，而无其他很多编程语言中的块定义域，所以使得你在某一 function 内的某语句和循环体中定义了一个变量，此变量可作用于整个 function 内，而不仅仅是在此语句或循环体中，因为它们的声明被 JavaScript 自动提升了。
+            </p>
+            <p>
+                我们通过例子来看清楚这到底是怎么一回事：<br>
+                原 function
+            </p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  var a = 10;
+    5.
+    6.  for(var i = 0; i < a; i++) {
+    7.    var b = i * i;
+    8.    log(b);
+    9.  }
+    10.
+    11.  if(a === 10) {
+    12.    var f = function() {
+    13.      log(a);
+    14.    };
+    15.    f();
+    16.	  }
+    17.
+    18.  function x() {
+    19.    log('Mr. X!');
+    20.  }
+    21.  x();
+    22.
+    23.}(window.console.log));
+</span>
+            </pre>
+            <p>
+                被 JS 提升过后
+            </p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.  // All variables used in the closure will be hoisted to the top of the function
+    4.  var a,
+    5.      i,
+    6.      b,
+    7.      f;
+    8.  // All functions in the closure will be hoisted to the top
+    9.  function x() {
+    10.    log('Mr. X!');
+    11.  }
+    12.
+    13.  a = 10;
+    14.
+    15.  for(i = 0; i < a; i++) {
+    16.    b = i * i;
+    17.    log(b);
+    18.  }
+    19.
+    20.  if(a === 10) {
+    21.    // Function assignments will only result in hoisted variables but the function body will not be hoisted
+    22.    // Only by using a real function declaration the whole function will be hoisted with its body
+    23.    f = function() {
+    24.      log(a);
+    25.    };
+    26.    f();
+    27.  }
+    28.
+    29.  x();
+    30.
+    31.}(window.console.log));
+</span>
+            </pre>
+            <p>
+                根据以上提升过程，你是否可理解以下代码？<br>
+                有效代码
+            </p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  var a = 10;
+    5.
+    6.  i = 5;
+    7.
+    8.  x();
+    9.
+    10.  for(var i; i < a; i++) {
+    11.    log(b);
+    12.    var b = i * i;
+    13.  }
+    14.
+    15.  if(a === 10) {
+    16.    f = function() {
+    17.      log(a);
+    18.    };
+    19.    f();
+    20.
+    21.    var f;
+    22.  }
+    23.
+    24.  function x() {
+    25.    log('Mr. X!');
+    26.  }
+    27.
+    28.}(window.console.log));
+</span>
+            </pre>
+            <p>
+                正如你所看到的这段令人充满困惑与误解的代码导致了出人意料的结果。只有良好的声明习惯，也就是下一章节我们要提到的声明规则，才能尽可能的避免这类错误风险。
+            </p>
+            <h2 id="t3-6" name="t3-6">3.6、提升声明</h2>
+            <p>
+                为避免上一章节所述的变量和方法定义被自动提升造成误解，把风险降到最低，我们应该手动地显示地去声明变量与方法。也就是说，所有的变量以及方法，应当定义在 function 内的首行。只用一个 var 关键字声明，多个变量用逗号隔开。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  var a = 10;
+    5.  var b = 10;
+    6.
+    7.  for(var i = 0; i < 10; i++) {
+    8.    var c = a * b * i;
+    9.  }
+    10.
+    11. function f() {
+    12.
+    13.  }
+    14.
+    15.  var d = 100;
+    16.  var x = function() {
+    17.    return d * d;
+    18.  };
+    19.  log(x());
+    20.
+    21.}(window.console.log));
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  var a = 10,
+    5.      b = 10,
+    6.      i,
+    7.      c,
+    8.      d,
+    9.      x;
+    10.
+    11.  function f() {
+    12.
+    13.  }
+    14.
+    15.  for(i = 0; i < 10; i++) {
+    16.    c = a * b * i;
+    17.  }
+    18.
+    19.
+    20.
+    21.  d = 100;
+    22.  x = function() {
+    23.    return d * d;
+    24.  };
+    25.  log(x());
+    26.
+    27.}(window.console.log));
+</span>
+            </pre>
+            <p>
+                把赋值尽量写在变量申明中。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.var a,
+    2.    b,
+    3.    c;
+    4.
+    5.a = 10;
+    6.b = 10;
+    7.c = 100;
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.var a = 10,
+    2.    b = 10,
+    3.    c = 100;
+</span>
+            </pre>
+            <h2 id="t3-7" name="t3-7">3.7、总是使用带类型判断的比较判断</h2>
+            <p>
+                总是使用 === 精确的比较操作符，避免在判断的过程中，由 JavaScript 的强制类型转换所造成的困扰。如果你使用 === 操作符，那比较的双方必须是同一类型为前提的条件下才会有效。如果你想了解更多关于强制类型转换的信息，你可以读一读 Dmitry Soshnikov 的这篇文章。
+            </p>
+            <p>
+                在只使用 == 的情况下，JavaScript 所带来的强制类型转换使得判断结果跟踪变得复杂，下面的例子可以看出这样的结果有多怪了：
+            </p>
+            <pre>
+<span>
+    1.(function(log){
+    2. 'use strict';
+    3.
+    4.  log('0' == 0); // true
+    5.  log('' == false); // true
+    6.  log('1' == true); // true
+    7.  log(null == undefined); // true
+    8.
+    9.  var x = {
+    10.    valueOf: function() {
+    11.      return 'X';
+    12.    }
+    13.  };
+    14.
+    15.  log(x == 'X');
+    16.
+    17.}(window.console.log));
+</span>
+            </pre>
+            <h2 id="t3-8" name="t3-8">3.8、明智地使用真假判断</h2>
+            <p>
+                当我们在一个 if 条件语句中使用变量或表达式时，会做真假判断。if(a == true) 是不同于 if(a) 的。后者的判断比较特殊，我们称其为真假判断。这种判断会通过特殊的操作将其转换为 true 或 false，下列表达式统统返回 false：false, 0, undefined, null, NaN, ''（空字符串）.
+            </p>
+            <p>
+                这种真假判断在我们只求结果而不关心过程的情况下，非常的有帮助。以下示例展示了真假判断是如何工作的：
+            </p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  function logTruthyFalsy(expr) {
+    5.    if(expr) {
+    6.      log('truthy');
+    7.    } else {
+    8.      log('falsy');
+    9.    }
+    10.  }
+    11.
+    12.  logTruthyFalsy(true); // truthy
+    13.  logTruthyFalsy(1); // truthy
+    14.  logTruthyFalsy({}); // truthy
+    15.  logTruthyFalsy([]); // truthy
+    16.  logTruthyFalsy('0'); // truthy
+    17.
+    18.  logTruthyFalsy(false); // falsy
+    19.  logTruthyFalsy(0); // falsy
+    20.  logTruthyFalsy(undefined); // falsy
+    21.  logTruthyFalsy(null); // falsy
+    22.  logTruthyFalsy(NaN); // falsy
+    23.  logTruthyFalsy(''); // falsy
+    24.
+    25.}(window.console.log));
+</span>
+            </pre>
+            <h2 id="t3-9" name="t3-9">3.9、变量赋值时的逻辑操作</h2>
+            <p>
+                逻辑操作符 || 和 && 也可被用来返回布尔值。如果操作对象为非布尔对象，那每个表达式将会被自左向右地做真假判断。基于此操作，最终总有一个表达式被返回回来。这在变量赋值时，是可以用来简化你的代码的。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.if(!x) {
+    2.  if(!y) {
+    3.    x = 1;
+    4.  } else {
+    5.    x = y;
+    6.  }
+    7.}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.x = x || y || 1;
+</span>
+            </pre>
+            <p>
+                这一小技巧经常用来给方法设定默认的参数。
+            </p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  function multiply(a, b) {
+    5.    a = a || 1;
+    6.    b = b || 1;
+    7.
+    8.    log('Result ' + a * b);
+    9.  }
+    10.
+    11.  multiply(); // Result 1
+    12.  multiply(10); // Result 10
+    13.  multiply(3, NaN); // Result 3
+    14.  multiply(9, 5); // Result 45
+    15.
+    16.}(window.console.log));
+</span>
+            </pre>
+            <h2 id="t3-10" name="t3-10">3.10、分号</h2>
+            <p>
+                总是使用分号，因为隐式的代码嵌套会引发难以察觉的问题。当然我们更要从根本上来杜绝这些问题[1]。以下几个示例展示了缺少分号的危害：
+            </p>
+            <pre>
+<span>
+    1.// 1.
+    2.MyClass.prototype.myMethod = function() {
+    3.  return 42;
+    4.}  // No semicolon here.
+    5.
+    6.(function() {
+    7.  // Some initialization code wrapped in a function to create a scope for locals.
+    8.})();
+    9.
+    10.
+    11.var x = {
+    12.  'i': 1,
+    13.  'j': 2
+    14.}  // No semicolon here.
+    15.
+    16.// 2.  Trying to do one thing on Internet Explorer and another on Firefox.
+    17.// I know you'd never write code like this, but throw me a bone.
+    18.[ffVersion, ieVersion][isIE]();
+    19.
+    20.
+    21.var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // No semicolon here.
+    22.
+    23.// 3. conditional execution a la bash
+    24.-1 == resultOfOperation() || die();
+</span>
+            </pre>
+            <p>
+                So what happens?<br>
+                1.	JavaScript 错误 —— 首先返回 42 的那个 function 被第二个 function 当中参数传入调用，接着数字 42 也被“调用”而导致出错。<br>
+                2.	八成你会得到 ‘no such property in undefined’ 的错误提示，因为在真实环境中的调用是这个样子：x[ffVersion, ieVersion][isIE]().<br>
+                3.	die 总是被调用。因为数组减 1 的结果是 NaN，它不等于任何东西（无论 resultOfOperation 是否返回 NaN）。所以最终的结果是 die() 执行完所获得值将赋给 THINGS_TO_EAT.<br>
+            </p>
+            <p>
+                Why?<br>
+                JavaScript 中语句要以分号结束，否则它将会继续执行下去，不管换不换行。以上的每一个示例中，函数声明或对象或数组，都变成了在一句语句体内。要知道闭合圆括号并不代表语句结束，JavaScript 不会终结语句，除非它的下一个 token 是一个中缀符[2] 或者是圆括号操作符。这真是让人大吃一惊，所以乖乖地给语句末加上分号吧。
+                澄清：分号与函数<br>
+                分号需要用在表达式的结尾，而并非函数声明的结尾。区分它们最好的例子是：
+            </p>
+            <pre>
+<span>
+    1.var foo = function() {
+    2.  return true;
+    3.};  // semicolon here.
+    4.
+    5.function foo() {
+    6.  return true;
+    7.}  // no semicolon here.
+</span>
+            </pre>
+            <h2 id="t3-11" name="t3-11">3.11、嵌套函数</h2>
+            <p>
+                嵌套函数是非常有用的，比如用在持续创建和隐藏辅助函数的任务中。你可以非常自由随意地使用它们。
+            </p>
+            <h2 id="t3-12" name="t3-12">3.12、空函数</h2>
+            <p>
+                [建议] 空函数不使用 new Function() 的形式。<br>
+                示例：
+            </p>
+            <pre>
+<span>
+    var emptyFunction = function () {};
+</span>
+            </pre>
+            <p>
+                [建议] 对于性能有高要求的场合，建议存在一个空函数的常量，供多处使用共享。
+                <br>示例：
+            </p>
+            <pre>
+<span>
+    var EMPTY_FUNCTION = function () {};
+    function MyClass() {
+    }
+    MyClass.prototype.abstractMethod = EMPTY_FUNCTION;MyClass.prototype.hooks.before = EMPTY_FUNCTION;MyClass.prototype.hooks.after = EMPTY_FUNCTION;
+</span>
+            </pre>
+            <h2 id="t3-13" name="t3-13">3.13、语句块内的函数声明</h2>
+            <p>
+                切勿在语句块内声明函数，在 ECMAScript 5 的严格模式下，这是不合法的。函数声明应该在定义域的顶层。但在语句块内可将函数申明转化为函数表达式赋值给变量。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.if (x) {
+    2.  function foo() {}
+    3.}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.if (x) {
+    2.  var foo = function() {};
+    3.}
+</span>
+            </pre>
+            <h2 id="t3-14" name="t3-14">3.14、异常</h2>
+            <p>
+                基本上你无法避免出现异常，特别是在做大型开发时（使用应用开发框架等等）。在没有自定义异常的情况下，从有返回值的函数中返回错误信息一定非常的棘手，更别提多不优雅了。不好的解决方案包括了传第一个引用类型来接纳错误信息，或总是返回一个对象列表，其中包含着可能的错误对象。以上方式基本上是比较简陋的异常处理方式。适时可做自定义异常处理。
+            </p>
+            <p>
+                在复杂的环境中，你可以考虑抛出对象而不仅仅是字符串（默认的抛出值）。
+            </p>
+            <pre>
+<span>
+    1.if(name === undefined) {
+    2.  throw {
+    3.    name: 'System Error',
+    4.    message: 'A name should always be specified!'
+    5.  }
+    6.}
+</span>
+            </pre>
+            <h2 id="t3-15" name="t3-15">3.15、标准特性</h2>
+            <p>
+                总是优先考虑使用标准特性。为了最大限度地保证扩展性与兼容性，总是首选标准的特性，而不是非标准的特性（例如：首选 string.charAt(3) 而不是 string[3]；首选 DOM 的操作方法来获得元素引用，而不是某一应用特定的快捷方法）。
+            </p>
+            <h2>3.16、简易的原型继承</h2>
+            <p>
+                如果你想在 JavaScript 中继承你的对象，请遵循一个简易的模式来创建此继承。如果你预计你会遇上复杂对象的继承，那可以考虑采用一个继承库，比如 Proto.js by Axel Rauschmayer.简易继承请用以下方式：
+            </p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  // Constructor function
+    5.  function Apple(name) {
+    6.    this.name = name;
+    7.  }
+    8.  // Defining a method of apple
+    9.  Apple.prototype.eat = function() {
+    10.    log('Eating ' + this.name);
+    11.  };
+    12.
+    13.  // Constructor function
+    14.  function GrannySmithApple() {
+    15.    // Invoking parent constructor
+    16.    Apple.prototype.constructor.call(this, 'Granny Smith');
+    17.  }
+    18.  // Set parent prototype while creating a copy with Object.create
+    19.  GrannySmithApple.prototype = Object.create(Apple.prototype);
+    20.  // Set constructor to the sub type, otherwise points to Apple
+    21.  GrannySmithApple.prototype.constructor = GrannySmithApple;
+    22.
+    23.  // Calling a super method
+    24.  GrannySmithApple.prototype.eat = function() {
+    25.    // Be sure to apply it onto our current object with call(this)
+    26.    Apple.prototype.eat.call(this);
+    27.
+    28.    log('Poor Grany Smith');
+    29.  };
+    30.
+    31.  // Instantiation
+    32.  var apple = new Apple('Test Apple');
+    33.  var grannyApple = new GrannySmithApple();
+    34.
+    35.  log(apple.name); // Test Apple
+    36.  log(grannyApple.name); // Granny Smith
+    37.
+    38.  // Instance checks
+    39.  log(apple instanceof Apple); // true
+    40.  log(apple instanceof GrannySmithApple); // false
+    41.
+    42.  log(grannyApple instanceof Apple); // true
+    43.  log(grannyApple instanceof GrannySmithApple); // true
+    44.
+    45.  // Calling method that calls super method
+    46.  grannyApple.eat(); // Eating Granny Smith\nPoor Grany Smith
+    47.
+    48.}(window.console.log));
+</span>
+            </pre>
+            <h2 id="t3-17" name="t3-17">3.17、使用闭包</h2>
+            <p>
+                闭包的创建也许是 JS 最有用也是最易被忽略的能力了。关于闭包如何工作的合理解释。
+            </p>
+            <h2>3.18、切勿在循环中创建函数</h2>
+            <p>
+                在简单的循环语句中加入函数是非常容易形成闭包而带来隐患的。下面的例子就是一个典型的陷阱：
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.(function(log, w){
+    2.  'use strict';
+    3.
+    4.  // numbers and i is defined in the current function closure
+    5.  var numbers = [1, 2, 3],
+    6.      i;
+    7.
+    8.  for(i = 0; i < numbers.length; i++) {
+    9.    w.setTimeout(function() {
+    10.      // At the moment when this gets executed the i variable, coming from the outer function scope
+    11.      // is set to 3 and the current program is alerting the message 3 times
+    12.      // 'Index 3 with number undefined
+    13.      // If you understand closures in javascript you know how to deal with those cases
+    14.      // It's best to just avoid functions / new closures in loops as this prevents those issues
+    15.
+    16.      w.alert('Index ' + i + ' with number ' + numbers[i]);
+    17.    }, 0);
+    18.  }
+    19.
+    20.}(window.console.log, window));
+</span>
+            </pre>
+            <p>
+                接下来的改进虽然已经解决了上述例子中的问题或 bug，但还是违反了不在循环中创建函数或闭包的原则。
+            </p>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.(function(log, w){
+    2.  'use strict';
+    3.
+    4.  // numbers and i is defined in the current function closure
+    5.  var numbers = [1, 2, 3],
+    6.      i;
+    7.
+    8.  for(i = 0; i < numbers.length; i++) {
+    9.    // Creating a new closure scope with an IIFE solves the problem
+    10.    // The delayed function will use index and number which are
+    11.    // in their own closure scope (one closure per loop iteration).
+    12.    // ---
+    13.    // Still this is not recommended as we violate our rule to not
+    14.    // create functions within loops and we are creating two!
+    15.
+    16.    (function(index, number){
+    17.      w.setTimeout(function() {
+    18.        // Will output as expected 0 > 1, 1 > 2, 2 > 3
+    19.        w.alert('Index ' + index + ' with number ' + number);
+    20.      }, 0);
+    21.    }(i, numbers[i]));
+    22.  }
+    23.
+    24.}(window.console.log, window));
+</span>
+            </pre>
+            <p>
+                接下来的改进已解决问题，而且也遵循了规范。可是，你会发现看上去似乎过于复杂繁冗了，应该会有更好的解决方案吧。不完全推荐：
+            </p>
+            <pre>
+<span>
+    1.(function(log, w){
+    2.  'use strict';
+    3.
+    4.  // numbers and i is defined in the current function closure
+    5.  var numbers = [1, 2, 3],
+    6.      i;
+    7.
+    8.  // Create a function outside of the loop that will accept arguments to create a
+    9.  // function closure scope. This function will return a function that executes in this
+    10.  // closure parent scope.
+    11.  function alertIndexWithNumber(index, number) {
+    12.    return function() {
+    13.      w.alert('Index ' + index + ' with number ' + number);
+    14.    };
+    15.  }
+    16.
+    17.  // First parameter is a function call that returns a function.
+    18.	  // ---
+    19.  // This solves our problem and we don't create a function inside our loop
+    20.  for(i = 0; i < numbers.length; i++) {
+    21.    w.setTimeout(alertIndexWithNumber(i, numbers[i]), 0);
+    22.  }
+    23.
+    24.}(window.console.log, window));
+</span>
+            </pre>
+            <p>
+                将循环语句转换为函数执行的方式问题能得到立马解决，每一次循环都会对应地创建一次闭包。函数式的风格更加值得推荐，而且看上去也更加地自然和可预料。
+            </p>
+            <p>
+                推荐
+            </p>
+            <pre>
+<span>
+    1.(function(log, w){
+    2.  'use strict';
+    3.
+    4.  // numbers and i is defined in the current function closure
+    5.  var numbers = [1, 2, 3],
+    6.      i;
+    7.
+    8.  numbers.forEach(function(number, index) {
+    9.    w.setTimeout(function() {
+    10.      w.alert('Index ' + index + ' with number ' + number);
+    11.    }, 0);
+    12.  });
+    13.
+    14.}(window.console.log, window));
+</span>
+            </pre>
+            <h2 id="t3-19" name="t3-19">3.19、eval 函数（魔鬼）</h2>
+            <p>
+                eval() 不但混淆语境还很危险，总会有比这更好、更清晰、更安全的另一种方案来写你的代码，因此尽量不要使用 evil 函数。
+            </p>
+            <h2 id="t3-20" name="t3-20">3.20、动态执行代码</h2>
+            <p>
+                [建议] 使用 new Function 执行动态代码。<br>
+                解释：<br>
+                通过 new Function 生成的函数作用域是全局使用域，不会影响当当前的本地作用域。如果有动态代码执行的需求，建议使用new Function。<br>
+                示例：
+            </p>
+            <pre>
+<span>
+    var handler = new Function('x', 'y', 'return x + y;');
+    var result = handler($('#x').val(), $('#y').val());
+</span>
+            </pre>
+            <h2 id="t3-21" name="t3-21">3.21、with</h2>
+            <p>
+                [建议] 尽量不要使用 with。<br>
+                解释：<br>
+                使用 with 可能会增加代码的复杂度，不利于阅读和管理；也会对性能有影响。大多数使用 with 的场景都能使用其他方式较好的替代。所以，尽量不要使用 with。
+            </p>
+            <h2 id="t3-22" name="t3-22">3.22、delete</h2>
+            <p>
+                [建议] 减少 delete 的使用。<br>
+                解释：<br>
+                如果没有特别的需求，减少或避免使用 delete。delete 的使用会破坏部分 JavaScript 引擎的性能优化。
+            </p>
+            <p>
+                [建议] 处理 delete 可能产生的异常。<br>
+                解释：<br>
+                对于有被遍历需求，且值 null 被认为具有业务逻辑意义的值的对象，移除某个属性必须使用 delete 操作。在严格模式或 IE 下使用 delete 时，不能被删除的属性会抛出异常，因此在不确定属性是否可以删除的情况下，建议添加try-catch 块。
+            </p>
+            <p>
+                示例：
+            </p>
+            <pre>
+<span>
+    try {
+    delete o.x;
+    }catch (deleteError) {
+    o.x = null;
+    }
+</span>
+            </pre>
+            <h2 id="t3-23" name="t3-23">3.23、对象属性</h2>
+            <p>
+                [建议] 避免修改外部传入的对象。<br>
+                解释：
+            </p>
+            <p>
+                JavaScript 因其脚本语言的动态特性，当一个对象未被 seal 或 freeze 时，可以任意添加、删除、修改属性值。但是随意地对 非自身控制的对象 进行修改，很容易造成代码在不可预知的情况下出现问题。因此，设计良好的组件、函数应该避免对外部传入的对象的修改。下面代码的 selectNode 方法修改了由外部传入的 datasource 对象。如果 datasource 用在其它场合（如另一个 Tree 实例）下，会造成状态的混乱。
+            </p>
+            <pre>
+<span>
+    function Tree(datasource) {
+        this.datasource = datasource;
+    }
+    Tree.prototype.selectNode = function (id) {
+            // 从datasource中找出节点对象
+            var node = this.findNode(id);
+            if (node) {
+            node.selected = true;
+            this.flushView();
+        }
+    };
+</span>
+            </pre>
+            <p>
+                对于此类场景，需要使用额外的对象来维护，使用由自身控制，不与外部产生任何交互的 selectedNodeIndex 对象来维护节点的选中状态，不对 datasource 作任何修改。
+            </p>
+            <pre>
+<span>
+    function Tree(datasource) {
+        this.datasource = datasource;
+        this.selectedNodeIndex = {};
+    }
+    Tree.prototype.selectNode = function (id) {
+    // 从datasource中找出节点对象
+    var node = this.findNode(id);
+    if (node) {
+        this.selectedNodeIndex[id] = true;
+        this.flushView();
+        }
+    };
+</span>
+            </pre>
+            <p>
+                除此之外，也可以通过 deepClone 等手段将自身维护的对象与外部传入的分离，保证不会相互影响。
+            </p>
+            <p>
+                [建议] 具备强类型的设计。<br>
+                解释：<br>
+                •	如果一个属性被设计为 boolean 类型，则不要使用 1 或 0 作为其值。对于标识性的属性，如对代码体积有严格要求，可以从一开始就设计为 number 类型且将 0 作为否定值。<br>
+                •	从 DOM 中取出的值通常为 string 类型，如果有对象或函数的接收类型为 number 类型，提前作好转换，而不是期望对象、函数可以处理多类型的值。
+            </p>
+            <h2 id="t3-24" name="t3-24">3.24、this 关键字</h2>
+            <p>
+                只在对象构造器、方法和在设定的闭包中使用 this 关键字。this 的语义在此有些误导。它时而指向全局对象（大多数时），时而指向调用者的定义域（在 eval 中），时而指向 DOM 树中的某一节点（当用事件处理绑定到 HTML 属性上时），时而指向一个新创建的对象（在构造器中），还时而指向其它的一些对象（如果函数被 call() 和 apply() 执行和调用时）。
+            </p>
+            <p>
+                正因为它是如此容易地被搞错，请限制它的使用场景：<br>
+                •	在构造函数中<br>
+                •	在对象的方法中（包括由此创建出的闭包内）
+            </p>
+            <h2 id="t3-25" name="t3-25">3.25、首选函数式风格</h2>
+            <p>
+                函数式编程让你可以简化代码并缩减维护成本，因为它容易复用，又适当地解耦和更少的依赖。
+            </p>
+            <p>
+                接下来的例子中，在一组数字求和的同一问题上，比较了两种解决方案。第一个例子是经典的程序处理，而第二个例子则是采用了函数式编程和 ECMA Script 5.1 的数组方法。
+            </p>
+            <p>
+                例外：往往在重代码性能轻代码维护的情况之下，要选择最优性能的解决方案而非维护性高的方案（比如用简单的循环语句代替 forEach）。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  var arr = [10, 3, 7, 9, 100, 20],
+    5.      sum = 0,
+    6.      i;
+    7.
+    8.
+    9.  for(i = 0; i < arr.length; i++) {
+    10.    sum += arr[i];
+    11.  }
+    12.
+    13.  log('The sum of array ' + arr + ' is: ' + sum)
+    14.
+    15.}(window.console.log));
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  var arr = [10, 3, 7, 9, 100, 20];
+    5.
+    6.  var sum = arr.reduce(function(prevValue, currentValue) {
+    7.    return prevValue + currentValue;
+    8.  }, 0);
+    9.
+    10.  log('The sum of array ' + arr + ' is: ' + sum);
+    11.
+    12.}(window.console.log));
+</span>
+            </pre>
+            <p>
+                另一个例子通过某一规则对一个数组进行过滤匹配来创建一个新的数组。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  var numbers = [11, 3, 7, 9, 100, 20, 14, 10],
+    5.      numbersGreaterTen = [],
+    6.      i;
+    7.
+    8.
+    9.  for(i = 0; i < numbers.length; i++) {
+    10.    if(numbers[i] > 10) {
+    11.      numbersGreaterTen.push(numbers[i]);
+    12.    }
+    13.  }
+    14.
+    15.  log('From the list of numbers ' + numbers + ' only ' + numbersGreaterTen + ' are greater than ten');
+    16.
+    17.}(window.console.log));
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  var numbers = [11, 3, 7, 9, 100, 20, 14, 10];
+    5.
+    6.  var numbersGreaterTen = numbers.filter(function(element) {
+    7.    return element > 10;
+    8.  });
+    9.
+    10.  log('From the list of numbers ' + numbers + ' only ' + numbersGreaterTen + ' are greater than ten');
+    11.
+    12.}(window.console.log));
+</span>
+            </pre>
+            <h2 id="t3-26" name="t3-26">3.26、使用 ECMA Script 5</h2>
+            <p>
+                建议使用 ECMA Script 5 中新增的语法糖和函数。这将简化你的程序，并让你的代码更加灵活和可复用。
+            </p>
+            <h2 id="t3-27" name="t3-27">3.27、数组和对象的属性迭代</h2>
+            <p>
+                用 ECMA5 的迭代方法来迭代数组。使用 Array.forEach 或者如果你要在特殊场合下中断迭代，那就用Array.every。
+            </p>
+            <pre>
+<span>
+    1.(function(log){
+    2.  'use strict';
+    3.
+    4.  // Iterate over an array and break at a certain condition
+    5.  [1, 2, 3, 4, 5].every(function(element, index, arr) {
+    6.    log(element + ' at index ' + index + ' in array ' + arr);
+    7.
+    8.    if(index !== 5) {
+    9.      return true;
+    10.    }
+    11.  });
+    12.
+    13.  // Defining a simple javascript object
+    14.  var obj = {
+    15.    a: 'A',
+    16.    b: 'B',
+    17.    'c-d-e': 'CDE'
+    18.  };
+    19.
+    20.  // Iterating over the object keys
+    21.  Object.keys(obj).forEach(function(element, index, arr) {
+    22.    log('Key ' + element + ' has value ' + obj[element]);
+    23.  });
+    24.
+    25.}(window.console.log));
+</span>
+            </pre>
+            <h2 id="t3-28" name="t3-28">3.28、不要使用 switch</h2>
+            <p>
+                switch 在所有的编程语言中都是个非常错误的难以控制的语句，建议用 if else 来替换它。
+            </p>
+            <h2 id="t3-29" name="t3-29">3.39、数组和对象字面量</h2>
+            <p>
+                用数组和对象字面量来代替数组和对象构造器。数组构造器很容易让人在它的参数上犯错。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.// Length is 3.
+    2.var a1 = new Array(x1, x2, x3);
+    3.
+    4.// Length is 2.
+    5.var a2 = new Array(x1, x2);
+    6.
+    7.// If x1 is a number and it is a natural number the length will be x1.
+    8.// If x1 is a number but not a natural number this will throw an exception.
+    9.// Otherwise the array will have one element with x1 as its value.
+    10.var a3 = new Array(x1);
+    11.
+    12.// Length is 0.
+    13.var a4 = new Array();
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.var a = [x1, x2, x3];
+    2.var a2 = [x1, x2];
+    3.var a3 = [x1];
+    4.var a4 = [];
+</span>
+            </pre>
+            <p>
+                对象构造器不会有类似的问题，但是为了可读性和统一性，我们应该使用对象字面量。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.var o = new Object();
+    2.
+    3.var o2 = new Object();
+    4.o2.a = 0;
+    5.o2.b = 1;
+    6.o2.c = 2;
+    7.o2['strange key'] = 3;
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.var o = {};
+    2.
+    3.var o2 = {
+    4.  a: 0,
+    5.  b: 1,
+    6.  c: 2,
+    7.  'strange key': 3
+    8.};
+</span>
+            </pre>
+            <h2 id="t3-30" name="t3-30">3.30、修改内建对象的原型链</h2>
+            <p>
+                修改内建的诸如 Object.prototype 和 Array.prototype 是被严厉禁止的。修改其它的内建对象比如Function.prototype，虽危害没那么大，但始终还是会导致在开发过程中难以 debug 的问题，应当也要避免。
+            </p>
+            <h2 id="t3-31" name="t3-31">3.31、自定义 toString() 方法</h2>
+            <p>
+                你可以通过自定义 toString() 来控制对象字符串化。这很好，但你必须保证你的方法总是成功并不会有其它副作用。如果你的方法达不到这样的标准，那将会引发严重的问题。如果 toString() 调用了一个方法，这个方法做了一个断言[3] ，当断言失败，它可能会输出它所在对象的名称，当然对象也需要调用toString()。
+            </p>
+            <h2 id="t3-32" name="t3-32">3.32、圆括号</h2>
+            <p>
+                一般在语法和语义上真正需要时才谨慎地使用圆括号。不要用在一元操作符上，例如 delete, typeof 和void，或在关键字之后，例如 return, throw, case, new 等。
+            </p>
+            <h2 id="t3-33" name="t3-33">3.33、字符串</h2>
+            <p>
+                统一使用单引号(‘)，不使用双引号(“)。这在创建 HTML 字符串非常有好处：
+            </p>
+            <pre>
+<span>
+    1. var msg = 'This is some HTML <div class="makes-sense"></div>';
+</span>
+            </pre>
+            <h2 id="t3-34" name="t3-34">3.34、三元条件判断</h2>
+            <p>
+                用三元操作符分配或返回语句。在比较简单的情况下使用，避免在复杂的情况下使用。没人愿意用 10 行三元操作符把自己的脑子绕晕。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.if(x === 10) {
+    2.  return 'valid';
+    3.} else {
+    4.  return 'invalid';
+    5.}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.return x === 10 ? 'valid' : 'invalid';
+</span>
+            </pre>
+            <p>
+                [1]：作者指的是采用严格规范的语句写法，从根本上杜绝由分号缺失而引起的代码歧义。<br>
+                [2]：中缀符，指的是像 x + y 中的 +。<br>
+                [3]：断言一般指程序员在测试测序时的假设，一般是一些布尔表达式，当返回是 true 时，断言为真，代码运行会继续进行；如果条件判断为 false，代码运行停止，你的应用被终止。
+            </p>
+            <h2 id="t3-35" name="t3-35">3.35、面向对象</h2>
+            <p>
+                [强制] 类的继承方案，实现时需要修正 constructor。<br>
+                解释：<br>
+                通常使用其他 library 的类继承方案都会进行 constructor 修正。如果是自己实现的类继承方案，需要进行 constructor 修正。<br>
+                示例：
+            </p>
+            <pre>
+<span>
+    /** * 构建类之间的继承关系 * * @param {Function} subClass 子类函数 * @param {Function} superClass 父类函数 */
+    function inherits(subClass, superClass) {
+        var F = new Function();
+        F.prototype = superClass.prototype;
+        subClass.prototype = new F();
+        subClass.prototype.constructor = subClass;
+    }
+</span>
+            </pre>
+            <p>
+                [建议] 声明类时，保证 constructor 的正确性。<br>
+                示例：
+            </p>
+            <pre>
+<span>
+    function Animal(name) {
+        this.name = name;
+    }
+    // 直接prototype等于对象时，需要修正
+    constructorAnimal.prototype = {
+        constructor: Animal,
+        jump: function () {
+            alert('animal ' + this.name + ' jump');
+            }
+    };
+    // 这种方式扩展prototype则无需理会
+    constructorAnimal.prototype.jump = function () {
+        alert('animal ' + this.name + ' jump');
+    };
+</span>
+            </pre>
+            <p>
+                [建议] 属性在构造函数中声明，方法在原型中声明。<br>
+                解释：<br>
+                原型对象的成员被所有实例共享，能节约内存占用。所以编码时我们应该遵守这样的原则：原型对象包含程序不会修改的成员，如方法函数或配置项。
+            </p>
+            <pre>
+<span>
+    function TextNode(value, engine) {
+        this.value = value;
+        this.engine = engine;
+    }
+    TextNode.prototype.clone = function () {
+        return this;
+    };
+</span>
+            </pre>
+            <p>
+                [强制] 自定义事件的 事件名 必须全小写。<br>
+                解释：<br>
+                在 JavaScript 广泛应用的浏览器环境，绝大多数 DOM 事件名称都是全小写的。为了遵循大多数 JavaScript 开发者的习惯，在设计自定义事件时，事件名也应该全小写。
+            </p>
+            <p>
+                [强制] 自定义事件只能有一个 event 参数。如果事件需要传递较多信息，应仔细设计事件对象。<br>
+                解释：<br>
+                一个事件对象的好处有：<br>
+                1.	顺序无关，避免事件监听者需要记忆参数顺序。<br>
+                2.	每个事件信息都可以根据需要提供或者不提供，更自由。<br>
+                3.	扩展方便，未来添加事件信息时，无需考虑会破坏监听器参数形式而无法向后兼容。
+            </p>
+            <p>
+                [建议] 设计自定义事件时，应考虑禁止默认行为。<br>
+                解释：<br>
+                常见禁止默认行为的方式有两种：<br>
+                1.	事件监听函数中 return false。<br>
+                2.	事件对象中包含禁止默认行为的方法，如 preventDefault。
+            </p>
+        </div>
+
+        <!--第四规范-->
+        <div id="txt4">
+            <h1>4、CSS and Sass</h1>
+            <h2 id="t4-1" name="t4-1">4.1、ID and class naming</h2>
+            <p>
+                ID和class(类)名总是使用可以反应元素目的和用途的名称，或其他通用名称。代替表象和晦涩难懂的名称。
+            </p>
+            <p>
+                应该首选具体和反映元素目的的名称，因为这些是最可以理解的，而且发生变化的可能性最小。
+            </p>
+            <p>
+                通用名称只是多个元素的备用名，他们兄弟元素之间是一样的，没有特别意义。区分他们，使他们具有特殊意义，通常需要为“帮手”。
+            </p>
+            <p>
+                尽管class(类)名和ID 的语义化对于计算机解析来说没有什么实际的意义，语义化的名称 通常是正确的选择，因为它们所代表的信息含义，不包含表现的限制。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1..fw-800 {
+    2.  font-weight: 800;
+    3.}
+    4.
+    5..red {
+    6.  color: red;
+    7.}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.  .heavy {
+    2.      font-weight: 800;
+    3.  }
+    4.
+    5.  .important {
+    6.      color: red;
+    7.  }
+</span>
+            </pre>
+            <h2 id="t4-2" name="t4-2">4.2、合理的避免使用ID</h2>
+            <p>
+                一般情况下ID不应该被应用于样式。ID的样式不能被复用并且每个页面中你只能使用一次ID。使用ID唯一有效的是确定网页或整个站点中的位置。尽管如此，你应该始终考虑使用class，而不是id，除非只使用一次。
+            </p>
+
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	#content .title {
+    2.	  font-size: 2em;
+    3.	}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	.content .title {
+    2.	  font-size: 2em;
+    3.	}
+</span>
+            </pre>
+            <p>
+                另一个反对使用ID的观点是含有ID选择器权重很高。一个只包含一个ID选择器权重高于包含1000个class(类)名的选择器，这使得它很奇怪。
+            </p>
+            <pre>
+<span>
+    1.	// 这个选择器权重高于下面的选择器
+    2.	#content .title {
+    3.	  color: red;
+    4.	}
+    5.
+    6.	// than this selector!
+    7.	html body div.content.news-content .title.content-title.important {
+    8.	  color: blue;
+    9.	}
+</span>
+            </pre>
+            <h2 id="t4-3" name="t4-3">4.3、CSS选择器中避免标签名</h2>
+            <p>
+                标签名<br>
+                当构建选择器时应该使用清晰， 准确和有语义的class(类)名。不要使用标签选择器。 如果你只关心你的class(类)名，而不是你的代码元素，这样会更容易维护。从分离的角度考虑,在表现层中不应该分配html标记/语义。它可能是一个有序列表需要被改成一个无序列表，或者一个div将被转换成article。如果你只使用具有实际意义的class(类)名，并且不使用元素选择器，那么你只需要改变你的html标记，而不用改动你的CSS。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	div.content > header.content-header > h2.title {
+    2.	  font-size: 2em;
+    3.	}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	.content > .content-header > .title {
+    2.	  font-size: 2em;
+    3.	}
+</span>
+            </pre>
+            <p>
+                css层级
+                </p>
+            <p>
+                CSS选择器层数决定页面渲染快慢，推荐使用层数为4层提高页面渲染速度。如下为京东商城页面样式表：
+            </p>
+            <div class="img-style">
+                <img src="img/1.png" alt="style">
+            </div>
+            <p>
+                ID和CLASS：
+            </p>
+            <p>
+                ID是唯一的。所以尽量在结构外围使用，通常用于页面布局。Class是可重复的。所以尽量在结构内部使用，通常用于样式定义。ID的样式优先级高于Class。
+            </p>
+            <p>
+                【注意】：页面样式多使用class少使用ID属性；
+            </p>
+            <h2 id="t4-4" name="t4-4">4.4、尽可能的精确</h2>
+            <p>
+                很多前端开发人员写选择器链的时候不使用 直接子选择器（注：直接子选择器和后代选择器的区别）。有时，这可能会导致疼痛的设计问题并且有时候可能会很耗性能。然而，在任何情况下，这是一个非常不好的做法。如果你不写很通用的，需要匹配到DOM末端的选择器， 你应该总是考虑直接子选择器。
+            </p>
+            <p>
+                考虑下面的DOM:
+            </p>
+            <pre>
+<span>
+1.&lt;article class="content news-content">
+2.  &lt;span class="title">News event&lt;/span>
+3.  &lt;div class="content-body">
+4.    &lt;div class="title content-title">
+5.      Check this out
+6.    &lt;/div>
+7.
+8.    &lt;p>This is a news article content&lt;/p>
+9.
+10.    &lt;div class="teaser">
+11.      &lt;div class="title">Buy this&lt;/div>
+12.      &lt;div class="teaser-content">Yey!&lt;/div>
+13.    &lt;/div>
+14.  &lt;/div>
+15.&lt;/article>
+</span>
+            </pre>
+            <p>
+                下面的CSS将应用于有title类的全部三个元素。然后，要解决content类下的title类 和 teaser类下的title类下不同的样式，这将需要更精确的选择器再次重写他们的样式。
+            </p>
+
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	.content .title {
+    2.	  font-size: 2rem;
+    3.	}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	.content > .title {
+    2.	  font-size: 2rem;
+    3.	}
+    4.
+    5.	.content > .content-body > .title {
+    6.	  font-size: 1.5rem;
+    7.	}
+    8.
+    9.	.content > .content-body > .teaser > .title {
+    10.	  font-size: 1.2rem;
+    11.	}
+</span>
+            </pre>
+            <h2 id="t4-5" name="t4-5">4.5、属性书写顺序</h2>
+            <p>
+                [建议] 同一 rule set 下的属性在书写时，应按功能进行分组，并以 Formatting Model（布局方式、位置） > Box Model（尺寸） > Typographic（文本相关） > Visual（视觉效果） 的顺序书写，以提高代码的可读性。
+            </p>
+            <p>
+                解释：<br>
+                •	Formatting Model 相关属性包括：position / top / right / bottom / left / float / display / overflow 等。<br>
+                •	Box Model 相关属性包括：border / margin / padding / width / height 等。<br>
+                •	Typographic 相关属性包括：font / line-height / text-align / word-wrap 等。<br>
+                •	Visual 相关属性包括：background / color / transition / list-style 等。另外，如果包含 content 属性，应放在最前面。
+            </p>
+            <p>
+                示例：
+            </p>
+            <pre>
+<span>
+    .sidebar {
+        /* formatting model: positioning schemes / offsets / z-indexes / display / ...  */
+        position: absolute;
+        top: 50px;
+        left: 0;
+        overflow-x: hidden;
+
+        /* box model: sizes / margins / paddings / borders / ...  */
+        width: 200px;
+        padding: 5px;
+        border: 1px solid #ddd;
+
+        /* typographic: font / aligns / text styles / ... */
+        font-size: 14px;
+        line-height: 20px;
+
+        /* visual: colors / shadows / gradients / ... */
+        background: #f5f5f5;
+        color: #333;
+        -webkit-transition: color 1s;
+        -moz-transition: color 1s;
+        transition: color 1s;
+    }
+</span>
+            </pre>
+            <h2 id="t4-6" name="t4-6">4.6、缩写属性</h2>
+            <p>
+                CSS提供了各种缩写属性（如 font 字体）应该尽可能使用，即使在只设置一个值的情况下。使用缩写属性对于代码效率和可读性是有很有用的。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	border-top-style: none;
+    2.	font-family: palatino, georgia, serif;
+    3.	font-size: 100%;
+    4.	line-height: 1.6;
+    5.	padding-bottom: 2em;
+    6.	padding-left: 1em;
+    7.	padding-right: 1em;
+    8.	padding-top: 0;
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	border-top: 0;
+    2.	font: 100%/1.6 palatino, georgia, serif;
+    3.	padding: 0 1em 2em;
+</span>
+            </pre>
+            <h2 id="t4-7" name="t4-7">4.7、0 和 单位</h2>
+            <p>省略“0”值后面的单位。不要在0值后面使用单位，除非有值。</p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	padding-bottom: 0px;
+    2.	margin: 0em;
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	padding-bottom: 0;
+    2.	margin: 0;
+</span>
+            </pre>
+            <h2 id="t4-8" name="t4-8">4.8、十六进制表示法</h2>
+            <p>
+                在可能的情况下，使用3个字符的十六进制表示法。颜色值允许这样表示，3个字符的十六进制表示法更简短。始终使用小写的十六进制数字。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	color: #FF33AA;
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	color: #f3a;
+</span>
+            </pre>
+            <h2 id="t4-9" name="t4-9">4.9、ID 和 Class（类） 名的分隔符</h2>
+            <p>
+                使用连字符（中划线）分隔ID和Class（类）名中的单词。为了增强课理解性，在选择器中不要使用除了连字符（中划线）以为的任何字符（包括没有）来连接单词和缩写。
+            </p>
+            <p>
+                另外，作为该标准，预设属性选择器能识别连字符（中划线）作为单词[attribute|=value]的分隔符，所以最好的坚持使用连字符作为分隔符。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	.demoimage {}
+    2.	.error_status {}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	#video-id {}
+    2.	.ads-sample {}
+</span>
+            </pre>
+            <h2 id="t4-10" name="t4-10">4.10、Hacks</h2>
+            <p>
+                避免用户代理检测以及CSS“hacks” – 首先尝试不同的方法。通过用户代理检测或特殊的CSS滤镜，变通的方法和 hacks 很容易解决样式差异。为了达到并保持一个有效的和可管理的代码库，这两种方法都应该被认为是最后的手段。换句话说，从长远来看，用户代理检测和hacks会伤害项目，作为项目往往应该采取阻力最小的途径。也就是说，轻易允许使用用户代理检测和hacks 以后将过于频繁。
+            </p>
+            <p>
+                [建议] 需要添加 hack 时应尽可能考虑是否可以采用其他方式解决。<br>
+                解释：<br>
+            </p>
+            <p>
+                如果能通过合理的 HTML 结构或使用其他的 CSS 定义达到理想的样式，则不应该使用 hack 手段解决问题。通常 hack 会导致维护成本的增加。
+            </p>
+            <p>
+                [建议] 尽量使用 选择器 hack 处理兼容性，而非 属性 hack。<br>
+                解释：
+            </p>
+            <p>
+                尽量使用符合 CSS 语法的 selector hack，可以避免一些第三方库无法识别 hack 语法的问题。<br>
+                示例：
+            </p>
+            <pre>
+<span>
+    /* IE 7 */*:first-child + html #header {
+        margin-top: 3px;
+        padding: 5px;
+    }
+    /* IE 6 */* html #header {
+        margin-top: 5px;
+        padding: 4px;
+    }
+</span>
+            </pre>
+            <p>
+                [建议] 尽量使用简单的 属性 hack。<br>
+                示例：
+            </p>
+            <pre>
+<span>
+    .box {
+        _display: inline; /* fix double margin */
+        float: left;
+        margin-left: 20px;
+    }
+    .container {
+        overflow: hidden;
+        *zoom: 1; /* triggering hasLayout */
+    }
+</span>
+            </pre>
+            <h2 id="t4-11" name="t4-11">4.11、声明顺序</h2>
+            <p>
+                这是一个选择器内书写CSS属性顺序的大致轮廓。这是为了保证更好的可读性和可扫描重要。
+            </p>
+            <p>
+                作为最佳实践，我们应该遵循以下顺序（应该按照下表的顺序）：<br>
+                1.	结构性属性：<br>
+                    1.	display <br>
+                    2.	position, left, top, right etc.<br>
+                    3.	overflow, float, clear etc.<br>
+                    4.	margin, padding<br>
+                2.	表现性属性：<br>
+                    1.	background, border etc.<br>
+                    2.	font, text
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	.box {
+    2.	  font-family: 'Arial', sans-serif;
+    3.	  border: 3px solid #ddd;
+    4.	  left: 30%;
+    5.	  position: absolute;
+    6.	  text-transform: uppercase;
+    7.	  background-color: #eee;
+    8.	  right: 30%;
+    9.	  isplay: block;
+    10.	  font-size: 1.5rem;
+    11.	  overflow: hidden;
+    12.	  padding: 1em;
+    13.	  margin: 1em;
+    14.	}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	.box {
+    2.	  display: block;
+    3.	  position: absolute;
+    4.	  left: 30%;
+    5.	  right: 30%;
+    6.	  overflow: hidden;
+    7.	  margin: 1em;
+    8.	  padding: 1em;
+    9.	  background-color: #eee;
+    10.	  border: 3px solid #ddd;
+    11.	  font-family: 'Arial', sans-serif;
+    12.	  font-size: 1.5rem;
+    13.	  text-transform: uppercase;
+    14.	}
+</span>
+            </pre>
+            <h2 id="t4-12" name="t4-12">4.12、声明结束</h2>
+            <p>
+                为了保证一致性和可扩展性，每个声明应该用分号结束，每个声明换行。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	.test {
+    2.	  display: block; height: 100px
+    3.	}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	.test {
+    2.	  display: block;
+    3.	  height: 100px;
+    4.	}
+</span>
+            </pre>
+            <h2 id="t4-13" name="t4-13">4.13、属性名结束</h2>
+            <p>
+                属性名的冒号后使用一个空格。出于一致性的原因，属性和值（但属性和冒号之间没有空格）的之间始终使用一个空格。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	h3 {
+    2.	  font-weight:bold;
+    3.	}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	h3 {
+    2.	  font-weight: bold;
+    3.	}
+</span>
+            </pre>
+            <h2 id="t4-14" name="t4-14">4.14、选择器和声明分离</h2>
+            <p>每个选择器和属性声明总是使用新的一行。</p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	a:focus, a:active {
+    2.	  position: relative; top: 1px;
+    3.	}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	h1,
+    2.	h2,
+    3.	h3 {
+    4.	  font-weight: normal;
+    5.	  line-height: 1.2;
+    6.	}
+</span>
+            </pre>
+            <h2 id="t4-15" name="t4-15">4.15、规则分隔</h2>
+            <p>
+                规则之间始终有一个空行（双换行符）分隔。
+            </p>
+            <p>
+                推荐
+            </p>
+            <pre>
+<span>
+    1.	html {
+    2.	  background: #fff;
+    3.	}
+    4.
+    5.	body {
+    6.	  margin: auto;
+    7.	  width: 50%;
+    8.	}
+</span>
+            </pre>
+            <h2 id="t4-16" name="t4-16">4.16、CSS引号</h2>
+            <p>
+                属性选择器或属性值用双引号（””），而不是单引号（”）括起来。URI值（url()）不要使用引号。
+            </p>
+
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	@import url('//cdn.com/foundation.css');
+    2.
+    3.	html {
+    4.	  font-family: 'open sans', arial, sans-serif;
+    5.	}
+    6.
+    7.	body:after {
+    8.	  content: 'pause';
+    9.	}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	@import url(//cdn.com/foundation.css);
+    2.
+    3.	html {
+    4.	  font-family: "open sans", arial, sans-serif;
+    5.	}
+    6.
+    7.	body:after {
+    8.	  content: "pause";
+    9.	}
+</span>
+            </pre>
+            <h2 id="t4-17" name="t4-17">4.17、选择器嵌套 (SCSS)</h2>
+            <p>
+                在Sass中你可以嵌套选择器，这可以使代码变得更清洁和可读。嵌套所有的选择器，但尽量避免嵌套没有任何内容的选择器。如果你需要指定一些子元素的样式属性，而父元素将不什么样式属性，可以使用常规的CSS选择器链。这将防止您的脚本看起来过于复杂。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	// Not a good example by not making use of nesting at all
+    2.	.content {
+    3.	  display: block;
+    4.	}
+    5.
+    6.	.content > .news-article > .title {
+    7.	  font-size: 1.2em;
+    8.	}
+</span>
+            </pre>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	// Using nesting is better but not in all cases
+    2.	// Avoid nesting when there is no attributes and use selector chains instead
+    3.	.content {
+    4.	  display: block;
+    5.
+    6.	  > .news-article {
+    7.	    > .title {
+    8.	      font-size: 1.2em;
+    9.	    }
+    10.	  }
+    11.	}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	// This example takes the best approach while nesting but use selector chains where possible
+    2.	.content {
+    3.	  display: block;
+    4.
+    5.	  > .news-article > .title {
+    6.	    font-size: 1.2em;
+    7.	  }
+    8.	}
+</span>
+            </pre>
+            <h2 id="t4-18" name="t4-18">4.18、嵌套中引入 空行 (SCSS)</h2>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	.content {
+    2.	  display: block;
+    3.	  > .news-article {
+    4.	    background-color: #eee;
+    5.	    > .title {
+    6.	      font-size: 1.2em;
+    7.	    }
+    8.	    > .article-footnote {
+    9.	      font-size: 0.8em;
+    10.	    }
+    11.	  }
+    12.	}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	.content {
+    2.	  display: block;
+    3.
+    4.	  > .news-article {
+    5.	    background-color: #eee;
+    6.
+    7.	    > .title {
+    8.	      font-size: 1.2em;
+    9.	    }
+    10.
+    11.	    > .article-footnote {
+    12.	      font-size: 0.8em;
+    13.	    }
+    14.	  }
+    15.	}
+</span>
+            </pre>
+            <h2 id="t4-19" name="t4-19">4.19、上下文媒体查询(SCSS)</h2>
+            <p>
+                在Sass中，当你嵌套你的选择器时也可以使用上下文媒体查询。在Sass中，你可以在任何给定的嵌套层次中使用媒体查询。由此生成的CSS将被转换，这样的媒体查询将包裹选择器的形式呈现。
+            </p>
+            <p>
+                这技术非常方便，有助于保持媒体查询属于的上下文。第一种方法这可以让你先写你的手机样式，然后在任何你需要的地方用上下文媒体查询以提供桌面样式。
+            </p>
+            <p>不推荐</p>
+            <pre>
+<span>
+    1.	// This mobile first example looks like plain CSS where the whole structure of SCSS is repeated
+    2.	// on the bottom in a media query. This is error prone and makes maintenance harder as it's not so easy to relate
+    3.	// the content in the media query to the content in the upper part (mobile style)
+    4.
+    5.	.content-page {
+    6.	  font-size: 1.2rem;
+    7.
+    8.	  > .main {
+    9.	    background-color: whitesmoke;
+    10.
+    11.	    > .latest-news {
+    12.	      padding: 1rem;
+    13.
+    14.	      > .news-article {
+    15.	        padding: 1rem;
+    16.
+    17.	        > .title {
+    18.	          font-size: 2rem;
+    19.	        }
+    20.	      }
+    21.	    }
+    22.
+    23.	    > .content {
+    24.	      margin-top: 2rem;
+    25.	      padding: 1rem;
+    26.	    }
+    27.	  }
+    28.
+    29.	  > .page-footer {
+    30.	    margin-top: 2rem;
+    31.	    font-size: 1rem;
+    32.	  }
+    33.	}
+    34.
+    35.	@media screen and (min-width: 641px) {
+    36.	  .content-page {
+    37.	    font-size: 1rem;
+    38.
+    39.	    > .main > .latest-news > .news-article > .title {
+    40.	      font-size: 3rem;
+    41.	    }
+    42.
+    43.	    > .page-footer {
+    44.	      font-size: 0.8rem;
+    45.	    }
+    46.	  }
+    47.	}
+</span>
+            </pre>
+            <p>推荐</p>
+            <pre>
+<span>
+    1.	// This is the same example as above but here we use contextual media queries in order to put the different styles
+    2.	// for different media into the right context.
+    3.
+    4.	.content-page {
+    5.	  font-size: 1.2rem;
+    6.
+    7.	  @media screen and (min-width: 641px) {
+    8.	    font-size: 1rem;
+    9.	  }
+    10.
+    11.	  > .main {
+    12.	    background-color: whitesmoke;
+    13.
+    14.	    > .latest-news {
+    15.	      padding: 1rem;
+    16.
+    17.	      > .news-article {
+    18.	        padding: 1rem;
+    19.
+    20.	        > .title {
+    21.	          font-size: 2rem;
+    22.
+    23.	          @media screen and (min-width: 641px) {
+    24.	            font-size: 3rem;
+    25.	          }
+    26.	        }
+    27.	      }
+    28.	    }
+    29.
+    30.	    > .content {
+    31.	      margin-top: 2rem;
+    32.	      padding: 1rem;
+    33.	    }
+    34.	  }
+    35.
+    36.	  > .page-footer {
+    37.	    margin-top: 2rem;
+    38.	    font-size: 1rem;
+    39.
+    40.	    @media screen and (min-width: 641px) {
+    41.	      font-size: 0.8rem;
+    42.	    }
+    43.	  }
+    44.	}
+</span>
+            </pre>
+            <h2 id="t4-20" name="t4-20">4.20、嵌套顺序和父级选择器(SCSS)</h2>
+            <p>
+                当使用Sass的嵌套功能的时候，重要的是有一个明确的嵌套顺序，以下内容是一个SCSS块应具有的顺序。<br>
+                1.	当前选择器的样式属性<br>
+                2.	父级选择器的伪类选择器 (:first-letter, :hover, :active etc)<br>
+                3.	伪类元素 (:before and :after)<br>
+                4.	父级选择器的声明样式 (.selected, .active, .enlarged etc.)<br>
+                5.	用Sass的上下文媒体查询<br>
+                6.	子选择器作为最后的部分
+            </p>
+            <p>
+                The following example should illustrate how this ordering will achieve a clear structure while making use of the Sass parent selector.
+            </p>
+            <p>Recommended</p>
+            <pre>
+<span>
+    1.	.product-teaser {
+    2.	  // 1. Style attributes
+    3.	  display: inline-block;
+    4.	  padding: 1rem;
+    5.	  background-color: whitesmoke;
+    6.	  color: grey;
+    7.
+    8.	  // 2. Pseudo selectors with parent selector
+    9.	  &:hover {
+    10.	    color: black;
+    11.	  }
+    12.
+    13.	  // 3. Pseudo elements with parent selector
+    14.	  &:before {
+    15.	    content: "";
+    16.	    display: block;
+    17.	    border-top: 1px solid grey;
+    18.	  }
+    19.
+    20.	  &:after {
+    21.	    content: "";
+    22.	    display: block;
+    23.	    border-top: 1px solid grey;
+    24.	  }
+    25.
+    26.	  // 4. State classes with parent selector
+    27.	  &.active {
+    28.	    background-color: pink;
+    29.	    color: red;
+    30.
+    31.	    // 4.2. Pseuso selector in state class selector
+    32.	    &:hover {
+    33.	      color: darkred;
+    34.	    }
+    35.	  }
+    36.
+    37.	  // 5. Contextual media queries
+    38.	  @media screen and (max-width: 640px) {
+    39.	    display: block;
+    40.	    font-size: 2em;
+    41.	  }
+    42.
+    43.	  // 6. Sub selectors
+    44.	  > .content > .title {
+    45.	    font-size: 1.2em;
+    46.
+    47.	    // 6.5. Contextual media queries in sub selector
+    48.	    @media screen and (max-width: 640px) {
+    49.	      letter-spacing: 0.2em;
+    50.	      text-transform: uppercase;
+    51.	    }
+    52.	  }
+    53.	}
+</span>
+            </pre>
+            <h2 id="t4-21" name="t4-21">4.21、数据长度超出容器大小或小于容器大小</h2>
+            <p>
+                div布局时尽量使用自适应，使用分页显示功能；固定布局大小时考虑到元素content的最大数据容量，例如：不同省市名称长度是否影响布局，我们的数据是可变的，显示不完整的采用隐藏，并添加说明。友好的给用户提供有用信息。
+            </p>
+            <p>
+                知道每个div模块的是否加载动态和静态数据。哪些应该写死，哪些应该动态数据加载，考虑到调用数据时会不会影响整个元素模块。明确自己要实现的功能效果。例如：如下数据就会显示不全。
+            </p>
+            <div class="img-style">
+                <img src="img/2.png" alt="content">
+            </div>
+            <h2 id="t4-22" name="t4-22">4.22、页面分工及SVN使用步骤</h2>
+            <p>
+                1. div模块分工：<br>
+                a. 搭建项目主题框架结构。引用框架JS文件，CSS样式初始文件；公用部分只能加载，请不要修改内容；有问题请协商。<br>
+                b. div功能模块实现分工，代码提交SVN；
+            </p>
+            <p>
+                2. SVN使用步骤：<br>
+                代码合入步骤如下：<br>
+                1）SVN更新：获取最新的代码源文件；<br>
+                2）获取锁定：获得锁，文件只能一个人操作；<br>
+                3）[比较文件]：将修改文件与SVN更新的文件比较确定更新内容，避免覆盖他人已合入的正确代码；<br>
+                4）-- SVN提交：将修改的内容上传到服务器，提交后，被提交的文件的锁自动释放；(在提交对话框中，提交代码时，请按下面的模板填写合入信息。例如修改或添加的信息，修改人，版本，时间相关备注信息。)
+                5）-- 解除锁定：不合并修改的内容，直接释放锁。
+            </p>
+            <div class="img-style">
+                <img src="img/3.png" alt="content">
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/flexible.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+/*通用设置*/
+
+@charset "utf-8";
+* {margin:0; padding:0;}
+* html body {overflow:visible;}
+body {font-family: "微软雅黑","Microsoft YaHei"; text-align:center;box-sizing: border-box ;background: #f6f6f6}
+body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div, tr {margin:0 ; padding:0;}
+input, select { vertical-align:middle;outline:none;}
+body div {text-align:left;}
+textarea, input {word-wrap:break-word; word-break:break-all; padding:0px;}
+li {list-style-type:none;}
+img {border:0 none; vertical-align: middle}
+a {color:#000; text-decoration:none;}
+a:hover{text-decoration:none;}
+a {outline:none; }
+button{border:0;background: transparent;outline: none}
+.left{float: left;}
+.right{float: right}
+i,em{font-style: normal}

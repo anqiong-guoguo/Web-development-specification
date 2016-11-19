@@ -1,0 +1,909 @@
+<p id="top-title">所有的代码都要变成可供他人容易阅读的！</p>
+
+<!--左边导航-->
+<aside class="w300">
+	<div>
+		<ol type="1" class="aside-nav">
+			<h2>JavaScript 规范</h2>
+			<li class="current2">
+				<a id="a" href="#h1" class="hover">全局命名空间污染与 IIFE</a>
+			</li>
+			<li>
+				<a id="a" href="#h2">IIFE（立即执行的函数表达式）</a>
+			</li>
+			<li>
+				<a id="a" href="#h3">严格模式</a>
+			</li>
+			<li>
+				<a id="a" href="#h4">变量声明</a>
+			</li>
+			<li>
+				<a id="a" href="#h5">理解 JavaScrip</a>
+			</li>
+			<li>
+				<a id="a" href="#h6">提升声明</a>
+			</li>
+			<li>
+				<a id="a" href="#h7">总是使用带类型判断的比较判断</a>
+			</li>
+			<li>
+				<a id="a" href="#h8">明智地使用真假判断</a>
+			</li>
+			<li>
+				<a id="a" href="#h9">变量赋值时的逻辑操作</a>
+			</li>
+			<li>
+				<a id="a" href="#h10">分号</a>
+			</li>
+			<li>
+				<a id="a" href="#h11">嵌套函数</a>
+			</li>
+			<li>
+				<a id="a" href="#h12">空函数</a>
+			</li>
+			<li>
+				<a id="a" href="#h13">语句块内的函数声明</a>
+			</li>
+			<li>
+				<a id="a" href="#h14">异常</a>
+			</li>
+			<li>
+				<a id="a" href="#h15">标准特性</a>
+			</li>
+			<li>
+				<a id="a" href="#h16">简易的原型继承</a>
+			</li>
+			<li>
+				<a id="a" href="#h17">使用闭包</a>
+			</li>
+			<li>
+				<a id="a" href="#h18">切勿在循环中创建函数</a>
+			</li>
+			<li>
+				<a id="a" href="#h19">eval 函数（魔鬼）</a>
+			</li>
+			<li>
+				<a id="a" href="#h20">动态执行代码</a>
+			</li>
+			<li>
+				<a id="a" href="#h21">with</a>
+			</li>
+			<li>
+				<a id="a" href="#h22">delete</a>
+			</li>
+			<li>
+				<a id="a" href="#h23">对象属性</a>
+			</li>
+			<li>
+				<a id="a" href="#h24">this 关键字</a>
+			</li>
+			<li>
+				<a id="a" href="#h25">首选函数式风格</a>
+			</li>
+			<li>
+				<a id="a" href="#h26">使用 ECMA Script 5</a>
+			</li>
+			<li>
+				<a id="a" href="#h27">数组和对象的属性迭代</a>
+			</li>
+			<li>
+				<a id="a" href="#h28">不要使用 switch</a>
+			</li>
+			<li>
+				<a id="a" href="#h29">数组和对象字面量</a>
+			</li>
+			<li>
+				<a id="a" href="#h30">修改内建对象的原型链</a>
+			</li>
+			<li>
+				<a id="a" href="#h31">自定义 toString() 方法</a>
+			</li>
+			<li>
+				<a id="a" href="#h32">圆括号</a>
+			</li>
+			<li>
+				<a id="a" href="#h33">字符串</a>
+			</li>
+			<li>
+				<a id="a" href="#h34">三元条件判断（if 的快捷方法）</a>
+			</li>
+			<li>
+				<a id="a" href="#h35">面向对象</a>
+			</li>
+		</ol>
+	</div>
+</aside>
+<!--右边内容-->
+<section class="w780">
+	<div class="content">
+
+		<h3 id="h1">1、全局命名空间污染与 IIFE</h3>
+		<p>总是将代码包裹成一个 IIFE(Immediately-Invoked Function Expression)，用以创建独立隔绝的定义域。这一举措可防止全局命名空间被污染。</p>
+		<p>IIFE 还可确保你的代码不会轻易被其它全局命名空间里的代码所修改（i.e. 第三方库，window 引用，被覆盖的未定义的关键字等等）。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.var x = 10,
+2.    y = 100; 
+3.// Declaring variables in the global scope is resulting in global scope pollution.<br /> All variables declared like this
+4.// will be stored in the window object. This is very unclean and needs to be avoided.
+5.console.log(window.x + ' ' + window.y);</pre></div>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.// We declare a IIFE and pass parameters into the function that we will use from <br />the global space
+2.(function(log, w, undefined){
+3.  'use strict';
+4.  var x = 10,
+5.      y = 100;
+6.  // Will output 'true true'
+7.  log((w.x === undefined) + ' ' + (w.y === undefined));
+8.}(window.console.log, window));</pre></div>
+
+		<h3 id="h2">2、IIFE（立即执行的函数表达式）</h3>
+		<p>无论何时，想要创建一个新的封闭的定义域，那就用 IIFE。它不仅避免了干扰，也使得内存在执行完后立即释放。</p>
+		<p>所有脚本文件建议都从 IIFE 开始。</p>
+		<p>立即执行的函数表达式的执行括号应该写在外包括号内。虽然写在内还是写在外都是有效的，但写在内使得整个表达式看起来更像一个整体，因此推荐这么做。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(){})();</pre></div>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(){}());</pre></div>
+		<p>so，用下列写法来格式化你的 IIFE 代码：</p>
+		<div class="bg-block color-white"><pre>
+1.(function(){
+2.  'use strict';
+3.  // Code goes here
+4.}());</pre></div>
+		<p>如果你想引用全局变量或者是外层 IIFE 的变量，可以通过下列方式传参：</p>
+		<div class="bg-block color-white"><pre>
+1.(function($, w, d){
+2.  'use strict';
+3.  $(function() {
+4.    w.alert(d.querySelectorAll('div').length);
+5.  });
+6.}(jQuery, window, document));</pre></div>
+
+		<h3 id="h3">3、严格模式</h3>
+		<p>ECMAScript 5 严格模式可在整个脚本或独个方法内被激活。它对应不同的 javascript 语境会做更加严格的错误检查。严格模式也确保了 javascript 代码更加的健壮，运行的也更加快速。</p>
+		<p>严格模式会阻止使用在未来很可能被引入的预留关键字。</p>
+		<p>你应该在你的脚本中启用严格模式，最好是在独立的 IIFE 中应用它。避免在你的脚本第一行使用它而导致你的所有脚本都启动了严格模式，这有可能会引发一些第三方类库的问题。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.// Script starts here
+2.'use strict';
+3.(function(){ 
+4.  // Your code starts here
+5.}());</pre></div>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(){
+2.  'use strict';
+3.  // Your code starts here 
+4.}());</pre></div>
+
+		<h3 id="h4">4、变量声明</h3>
+		<p>总是使用 var 来声明变量。如不指定 var，变量将被隐式地声明为全局变量，这将对变量难以控制。如果没有声明，变量处于什么定义域就变得不清（可以是在 Document 或 Window 中，也可以很容易地进入本地定义域）。所以，请总是使用 var 来声明变量。</p>
+		<p>采用严格模式带来的好处是，当你手误输入错误的变量名时，它可以通过报错信息来帮助你定位错误出处。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.x = 10;
+2.y = 100;</pre></div>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.var x = 10,
+2.    y = 100;</pre></div>
+
+		<h3 id="h5">5、理解 JavaScript 的定义域和定义域提升</h3>
+		<p>在 JavaScript 中变量和方法定义会自动提升到执行之前。JavaScript 只有 function 级的定义域，而无其他很多编程语言中的块定义域，所以使得你在某一 function 内的某语句和循环体中定义了一个变量，此变量可作用于整个 function 内，而不仅仅是在此语句或循环体中，因为它们的声明被 JavaScript 自动提升了。</p>
+		<p>我们通过例子来看清楚这到底是怎么一回事：</p>
+		<h4>原 function</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict'; 
+3.  var a = 10; 
+4.  for(var i = 0; i < a; i++) {
+5.    var b = i * i;
+6.    log(b);
+7.  } 
+8.  if(a === 10) {
+9.    var f = function() {
+10.      log(a);
+11.    };
+12.    f();
+13.  } 
+14.  function x() {
+15.    log('Mr. X!');
+16.  }
+17.  x();
+18.}(window.console.log));</pre></div>
+		<h4>被 JS 提升过后</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict';
+3.  // All variables used in the closure will be hoisted to the top of the function
+4.  var a,
+5.      i,
+6.      b,
+7.      f;
+8.  // All functions in the closure will be hoisted to the top
+9.  function x() {
+10.    log('Mr. X!');
+11.  }
+12.  a = 10;
+13.  for(i = 0; i &lt; a; i++) {
+14.    b = i * i;
+15.    log(b);
+16.  }
+17.  if(a === 10) {
+18.    // Function assignments will only result in hoisted variables but the function body 	
+19.will not be hoisted
+20.    // Only by using a real function declaration the whole function will be hoisted with its body
+21.    f = function() {
+22.      log(a);
+23.    };
+24.    f();
+25.  }
+26.  x();
+27.}(window.console.log));</pre></div>
+		<p>根据以上提升过程，你是否可理解以下代码？</p>
+		<h4>有效代码</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict';
+3.  var a = 10;
+4.  i = 5;
+5.  x();
+6.  for(var i; i < a; i++) {
+7.    log(b);
+8.    var b = i * i;
+9.  }
+10.  if(a === 10) {
+11.    f = function() {
+12.      log(a);
+13.    };
+14.    f();
+15.    var f;
+16.  }
+17.  function x() {
+18.    log('Mr. X!');
+19.  }
+20.}(window.console.log));</pre></div>
+		<p>正如你所看到的这段令人充满困惑与误解的代码导致了出人意料的结果。只有良好的声明习惯，也就是下一章节我们要提到的声明规则，才能尽可能的避免这类错误风险。</p>
+
+		<h3 id="h6">6、提升声明</h3>
+		<p>为避免上一章节所述的变量和方法定义被自动提升造成误解，把风险降到最低，我们应该手动地显示地去声明变量与方法。也就是说，所有的变量以及方法，应当定义在 function 内的首行。</p>
+		<p>只用一个 var 关键字声明，多个变量用逗号隔开。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict';
+3.  var a = 10;
+4.  var b = 10; 
+5.  for(var i = 0; i < 10; i++) {
+6.    var c = a * b * i;
+7.  } 
+8.  function f() {
+9.  }
+10.  var d = 100;
+11.  var x = function() {
+12.    return d * d;
+13.  };
+14.  log(x());
+15.}(window.console.log));</pre></div>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict';
+3.  var a = 10,
+4.      b = 10,
+5.      i,
+6.      c,
+7.      d,
+8.      x;
+9.  function f() {
+10.  }
+11.  for(i = 0; i &lt; 10; i++) {
+12.    c = a * b * i;
+13.  }
+14.  d = 100;
+15.  x = function() {
+16.    return d * d;
+17.  };
+18.  log(x());
+19.}(window.console.log));</pre></div>
+		<p>把赋值尽量写在变量申明中。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.var a,
+2.    b,
+3.    c;
+4.a = 10;
+5.b = 10;
+6.c = 100;</pre></div>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.var a = 10,
+2.    b = 10,
+3.    c = 100;</pre></div>
+
+		<h3 id="h7">7、总是使用带类型判断的比较判断</h3>
+		<p>总是使用 === 精确的比较操作符，避免在判断的过程中，由 JavaScript 的强制类型转换所造成的困扰。</p>
+		<p>如果你使用 === 操作符，那比较的双方必须是同一类型为前提的条件下才会有效。</p>
+		<p>如果你想了解更多关于强制类型转换的信息，你可以读一读
+			<a> Dmitry Soshnikov 的这篇文章。</a>
+		</p>
+		<p>在只使用 == 的情况下，JavaScript 所带来的强制类型转换使得判断结果跟踪变得复杂，下面的例子可以看出这样的结果有多怪了：</p>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict';
+3.  log('0' == 0); // true
+4.  log('' == false); // true
+5.  log('1' == true); // true
+6.  log(null == undefined); // true
+7.  var x = {
+8.    valueOf: function() {
+9.      return 'X';
+10.    }
+11.  };
+12.  log(x == 'X');
+13.}(window.console.log));</pre></div>
+
+		<h3 id="h8">8、明智地使用真假判断</h3>
+		<p>当我们在一个 if 条件语句中使用变量或表达式时，会做真假判断。if(a == true) 是不同于 if(a) 的。后者的判断比较特殊，我们称其为真假判断。这种判断会通过特殊的操作将其转换为 true 或 false，下列表达式统统返回 false：false, 0, undefined, null, NaN, ''（空字符串）.</p>
+		<p>这种真假判断在我们只求结果而不关心过程的情况下，非常的有帮助。</p>
+		<p>以下示例展示了真假判断是如何工作的：</p>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict';
+3.  function logTruthyFalsy(expr) {
+4.    if(expr) {
+5.      log('truthy');
+6.    } else {
+7.      log('falsy');
+8.    }
+9.  }
+10.  logTruthyFalsy(true); // truthy
+11.  logTruthyFalsy(1); // truthy
+12.  logTruthyFalsy({}); // truthy
+13.  logTruthyFalsy([]); // truthy
+14.  logTruthyFalsy('0'); // truthy
+15.  logTruthyFalsy(false); // falsy
+16.  logTruthyFalsy(0); // falsy
+17.  logTruthyFalsy(undefined); // falsy
+18.  logTruthyFalsy(null); // falsy
+19.  logTruthyFalsy(NaN); // falsy
+20.  logTruthyFalsy(''); // falsy
+21.}(window.console.log));</pre></div>
+
+		<h3 id="h9">9、变量赋值时的逻辑操作</h3>
+		<p>逻辑操作符 || 和 && 也可被用来返回布尔值。如果操作对象为非布尔对象，那每个表达式将会被自左向右地做真假判断。基于此操作，最终总有一个表达式被返回回来。这在变量赋值时，是可以用来简化你的代码的。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.if(!x) {
+2.  if(!y) {
+3.    x = 1;
+4.  } else {
+5.    x = y;
+6.  }
+7.}</pre></div>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.x = x || y || 1;</pre></div>
+		<p>这一小技巧经常用来给方法设定默认的参数。</p>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict';
+3.  function multiply(a, b) {
+4.    a = a || 1;
+5.    b = b || 1;
+6.    log('Result ' + a * b);
+7.  }
+8.  multiply(); // Result 1
+9.  multiply(10); // Result 10
+10.  multiply(3, NaN); // Result 3
+11.  multiply(9, 5); // Result 45
+12.}(window.console.log));</pre></div>
+
+		<h3 id="h10">10、分号</h3>
+		<p>总是使用分号，因为隐式的代码嵌套会引发难以察觉的问题。当然我们更要从根本上来杜绝这些问题[1]。以下几个示例展示了缺少分号的危害：</p>
+		<div class="bg-block color-white"><pre>
+1.MyClass.prototype.myMethod = function() {
+2.  return 42;
+3.}  // No semicolon here.
+4.(function() {
+5.  // Some initialization code wrapped in a function to create a scope for locals.
+6.})();
+7.var x = {
+8.  'i': 1,
+9.  'j': 2
+10.}  // No semicolon here.
+11.// 2.  Trying to do one thing on Internet Explorer and another on Firefox.
+12.// I know you'd never write code like this, but throw me a bone.
+13.[ffVersion, ieVersion][isIE]();
+14.var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // No semicolon here.
+15.// 3. conditional execution a la bash
+16.-1 == resultOfOperation() || die();</pre></div>
+		<h4>So what happens?</h4>
+		<p>1.JavaScript 错误 —— 首先返回 42 的那个 function 被第二个 function 当中参数传入调用，接着数字 42 也被“调用”而导致出错。 2.八成你会得到 ‘no such property in undefined’ 的错误提示，因为在真实环境中的调用是这个样子：x[ffVersion, ieVersion][isIE](). 3.die 总是被调用。因为数组减 1 的结果是 NaN，它不等于任何东西（无论 resultOfOperation 是否返回 NaN）。所以最终的结果是 die() 执行完所获得值将赋给 THINGS_TO_EAT.</p>
+		<h4>Why?</h4>
+		<p>JavaScript 中语句要以分号结束，否则它将会继续执行下去，不管换不换行。以上的每一个示例中，函数声明或对象或数组，都变成了在一句语句体内。要知道闭合圆括号并不代表语句结束，JavaScript 不会终结语句，除非它的下一个 token 是一个中缀符[2] 或者是圆括号操作符。</p>
+		<p>这真是让人大吃一惊，所以乖乖地给语句末加上分号吧。</p>
+		<h4>澄清：分号与函数</h4>
+		<p>分号需要用在表达式的结尾，而并非函数声明的结尾。区分它们最好的例子是：</p>
+		<div class="bg-block color-white"><pre>
+1.var foo = function() {
+2.  return true;
+3.};  // semicolon here.
+4.function foo() {
+5.  return true;
+6.}  // no semicolon here.</pre></div>
+
+		<h3 id="h11">11、嵌套函数</h3>
+		<p>嵌套函数是非常有用的，比如用在持续创建和隐藏辅助函数的任务中。你可以非常自由随意地使用它们。</p>
+
+		<h3 id="h12">12、空函数</h3>
+		<h4>[建议] 空函数不使用 new Function() 的形式。</h4>
+		<p>示例：</p>
+		<div class="bg-block color-white"><pre>
+var emptyFunction = function () {};</pre></div>
+		<h4>[建议] 对于性能有高要求的场合，建议存在一个空函数的常量，供多处使用共享。</h4>
+		<p>示例：</p>
+		<div class="bg-block color-white"><pre>
+1、 function MyClass() {
+2、}
+3、MyClass.prototype.abstractMethod = EMPTY_FUNCTION;MyClass.prototype.hooks.before = <br />EMPTY_FUNCTION;MyClass.prototype.hooks.after = EMPTY_FUNCTION;</pre></div>
+
+		<h3 id="h13">13、语句块内的函数声明</h3>
+		<p>切勿在语句块内声明函数，在 ECMAScript 5 的严格模式下，这是不合法的。函数声明应该在定义域的顶层。但在语句块内可将函数申明转化为函数表达式赋值给变量。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.if (x) {
+2.  function foo() {}
+3.}</pre></div>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.if (x) {
+2.  var foo = function() {};
+3.}</pre></div>
+
+		<h3 id="h14">14、异常</h3>
+		<p>基本上你无法避免出现异常，特别是在做大型开发时（使用应用开发框架等等）。</p>
+		<p>在没有自定义异常的情况下，从有返回值的函数中返回错误信息一定非常的棘手，更别提多不优雅了。不好的解决方案包括了传第一个引用类型来接纳错误信息，或总是返回一个对象列表，其中包含着可能的错误对象。以上方式基本上是比较简陋的异常处理方式。适时可做自定义异常处理。</p>
+		<p>在复杂的环境中，你可以考虑抛出对象而不仅仅是字符串（默认的抛出值）。</p>
+		<div class="bg-block color-white"><pre>
+1.if(name === undefined) {
+2.  throw {
+3.    name: 'System Error',
+4.    message: 'A name should always be specified!'
+5.  }
+6.}</pre></div>
+
+		<h3 id="h15">15、标准特性</h3>
+		<p>总是优先考虑使用标准特性。为了最大限度地保证扩展性与兼容性，总是首选标准的特性，而不是非标准的特性（例如：首选 string.charAt(3) 而不是 string[3]；首选 DOM 的操作方法来获得元素引用，而不是某一应用特定的快捷方法）。</p>
+
+		<h3 id="h16">16、简易的原型继承</h3>
+		<p>如果你想在 JavaScript 中继承你的对象，请遵循一个简易的模式来创建此继承。如果你预计你会遇上复杂对象的继承，那可以考虑采用一个继承库，比如
+			<a>Proto.js by Axel Rauschmayer</a>.</p>
+		<p>简易继承请用以下方式：</p>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict';
+3.  // Constructor function
+4.  function Apple(name) {
+5.    this.name = name;
+6.  }
+7.  // Defining a method of apple
+8.  Apple.prototype.eat = function() {
+9.    log('Eating ' + this.name);
+10.  };
+11.  // Constructor function
+12.  function GrannySmithApple() {
+13.    // Invoking parent constructor
+14.    Apple.prototype.constructor.call(this, 'Granny Smith');
+15.  }
+16.  // Set parent prototype while creating a copy with Object.create
+17.  GrannySmithApple.prototype = Object.create(Apple.prototype);
+18.  // Set constructor to the sub type, otherwise points to Apple
+19.  GrannySmithApple.prototype.constructor = GrannySmithApple;
+20.  // Calling a super method
+21.  GrannySmithApple.prototype.eat = function() {
+22.    // Be sure to apply it onto our current object with call(this)
+23.    Apple.prototype.eat.call(this);
+24.    log('Poor Grany Smith');
+25.  };
+26.  // Instantiation
+27.  var apple = new Apple('Test Apple');
+28.  var grannyApple = new GrannySmithApple();
+29.  log(apple.name); // Test Apple
+30.  log(grannyApple.name); // Granny Smith
+31.  // Instance checks
+32.  log(apple instanceof Apple); // true
+33.  log(apple instanceof GrannySmithApple); // false
+34.  log(grannyApple instanceof Apple); // true
+35.  log(grannyApple instanceof GrannySmithApple); // true
+36.  // Calling method that calls super method
+37.  grannyApple.eat(); // Eating Granny Smith\nPoor Grany Smith
+38.}(window.console.log));</pre></div>
+
+		<h3 id="h17">17、使用闭包</h3>
+		<p>闭包的创建也许是 JS 最有用也是最易被忽略的能力了。
+			<a>关于闭包如何工作的合理解释</a>。</p>
+
+		<h3 id="h18">18、切勿在循环中创建函数</h3>
+		<p>在简单的循环语句中加入函数是非常容易形成闭包而带来隐患的。下面的例子就是一个典型的陷阱：</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log, w){
+2.  'use strict';
+3.  // numbers and i is defined in the current function closure
+4.  var numbers = [1, 2, 3],
+5.      i;
+6.  for(i = 0; i < numbers.length; i++) {
+7.    w.setTimeout(function() {
+8.      // At the moment when this gets executed the i variable, coming from <br />the outer function scope
+9.      // is set to 3 and the current program is alerting the message 3 times
+10.      // 'Index 3 with number undefined
+11.      // If you understand closures in javascript you know how to deal with those cases
+12.      // It's best to just avoid functions / new closures in loops as this prevents those issues
+13.      w.alert('Index ' + i + ' with number ' + numbers[i]);
+14.    }, 0);
+15.  }
+16.}(window.console.log, window));</pre></div>
+		<p>接下来的改进虽然已经解决了上述例子中的问题或 bug，但还是违反了不在循环中创建函数或闭包的原则。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log, w){
+2.  'use strict';
+3.  // numbers and i is defined in the current function closure
+4.  var numbers = [1, 2, 3],
+5.      i;
+6.  for(i = 0; i < numbers.length; i++) {
+7.    // Creating a new closure scope with an IIFE solves the problem
+8.    // The delayed function will use index and number which are
+9.    // in their own closure scope (one closure per loop iteration).
+10.    // ---
+11.    // Still this is not recommended as we violate our rule to not
+12.    // create functions within loops and we are creating two!
+13.    (function(index, number){
+14.      w.setTimeout(function() {
+15.        // Will output as expected 0 > 1, 1 > 2, 2 > 3
+16.        w.alert('Index ' + index + ' with number ' + number);
+17.      }, 0);
+18.    }(i, numbers[i]));
+19.  }
+20.}(window.console.log, window));</pre></div>
+		<p>接下来的改进已解决问题，而且也遵循了规范。可是，你会发现看上去似乎过于复杂繁冗了，应该会有更好的解决方案吧。</p>
+		<h4>不完全推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log, w){
+2.  'use strict';
+3.  // numbers and i is defined in the current function closure
+4.  var numbers = [1, 2, 3],
+5.      i;
+6.  // Create a function outside of the loop that will accept arguments to create a
+7.  // function closure scope. This function will return a function that executes in this
+8.  // closure parent scope.
+9.  function alertIndexWithNumber(index, number) {
+10.    return function() {
+11.      w.alert('Index ' + index + ' with number ' + number);
+12.    };
+13.  }
+14.  // First parameter is a function call that returns a function.
+15.  // ---
+16.  // This solves our problem and we don't create a function inside our loop
+17.  for(i = 0; i &lt; numbers.length; i++) {
+18.    w.setTimeout(alertIndexWithNumber(i, numbers[i]), 0);
+19.  }
+20.}(window.console.log, window));</pre></div>
+		<p>将循环语句转换为函数执行的方式问题能得到立马解决，每一次循环都会对应地创建一次闭包。函数式的风格更加值得推荐，而且看上去也更加地自然和可预料。</p>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log, w){
+2.  'use strict';
+3.  // numbers and i is defined in the current function closure
+4.  var numbers = [1, 2, 3],
+5.      i;
+6.  numbers.forEach(function(number, index) {
+7.    w.setTimeout(function() {
+8.      w.alert('Index ' + index + ' with number ' + number);
+9.    }, 0);
+10.  });
+11.}(window.console.log, window));</pre></div>
+
+		<h3 id="h19">19、eval 函数（魔鬼）</h3>
+		<p>eval() 不但混淆语境还很危险，总会有比这更好、更清晰、更安全的另一种方案来写你的代码，因此尽量不要使用 evil 函数。</p>
+
+		<h3 id="h20">20、动态执行代码</h3>
+		<h4>[建议] 使用 new Function 执行动态代码。</h4>
+		<p>解释：</p>
+		<p>通过 new Function 生成的函数作用域是全局使用域，不会影响当当前的本地作用域。如果有动态代码执行的需求，建议使用new Function。</p>
+		<p>示例：</p>
+		<div class="bg-block color-white"><pre>
+var handler = new Function('x', 'y', 'return x + y;');var result = <br />handler($('#x').val(), $('#y').val());</pre></div>
+
+		<h3 id="h21">21、with</h3>
+		<h4>[建议] 尽量不要使用 with。</h4>
+		<p>解释：</p>
+		<p>使用 with 可能会增加代码的复杂度，不利于阅读和管理；也会对性能有影响。大多数使用 with 的场景都能使用其他方式较好的替代。所以，尽量不要使用 with。</p>
+
+		<h3 id="h22">22、delete</h3>
+		<h4>[建议] 减少 delete 的使用。</h4>
+		<p>解释：</p>
+		<p>如果没有特别的需求，减少或避免使用 delete。delete 的使用会破坏部分 JavaScript 引擎的性能优化。</p>
+		<h4>[建议] 处理 delete 可能产生的异常。</h4>
+		<p>解释：</p>
+		<p>对于有被遍历需求，且值 null 被认为具有业务逻辑意义的值的对象，移除某个属性必须使用 delete 操作。</p>
+		<p>在严格模式或 IE 下使用 delete 时，不能被删除的属性会抛出异常，因此在不确定属性是否可以删除的情况下，建议添加try-catch 块。</p>
+		<p>示例：</p>
+		<div class="bg-block color-white"><pre>
+1、try {
+2、    delete o.x;
+3、}catch (deleteError) {
+4、   o.x = null;
+5、}</pre></div>
+
+		<h3 id="h23">23、对象属性</h3>
+		<h4>[建议] 避免修改外部传入的对象。</h4>
+		<p>解释：</p>
+		<p>JavaScript 因其脚本语言的动态特性，当一个对象未被 seal 或 freeze 时，可以任意添加、删除、修改属性值。</p>
+		<p>但是随意地对 非自身控制的对象 进行修改，很容易造成代码在不可预知的情况下出现问题。因此，设计良好的组件、函数应该避免对外部传入的对象的修改。</p>
+		<p>下面代码的 selectNode 方法修改了由外部传入的 datasource 对象。如果 datasource 用在其它场合（如另一个 Tree 实例）下，会造成状态的混乱。</p>
+		<div class="bg-block color-white"><pre>
+1、function Tree(datasource) {
+2、    this.datasource = datasource;
+3、}
+4、Tree.prototype.selectNode = function (id) {
+5、    // 从datasource中找出节点对象
+6、    var node = this.findNode(id);
+7、    if (node) {
+8、        node.selected = true;
+9、        this.flushView();
+10、    }
+11、};</pre></div>
+		<p>对于此类场景，需要使用额外的对象来维护，使用由自身控制，不与外部产生任何交互的 selectedNodeIndex 对象来维护节点的选中状态，不对 datasource 作任何修改。</p>
+		<div class="bg-block color-white"><pre>
+1、function Tree(datasource) {
+2、    this.datasource = datasource;
+3、    this.selectedNodeIndex = {};
+4、}
+5、Tree.prototype.selectNode = function (id) {
+6、    // 从datasource中找出节点对象
+7、    var node = this.findNode(id);
+8、    if (node) {
+9、        this.selectedNodeIndex[id] = true;
+10、        this.flushView();
+11、    }
+12、};</pre></div>
+		<p>除此之外，也可以通过 deepClone 等手段将自身维护的对象与外部传入的分离，保证不会相互影响。</p>
+		<h4>[建议] 具备强类型的设计。</h4>
+		<p>解释：</p>
+		<pre>
+	如果一个属性被设计为 boolean 类型，则不要使用 1 或 0 作为其值。对于标识性的属性，如对代码
+体积有严格要求，可以从一开始就设计为 number 类型且将 0 作为否定值。
+	从 DOM 中取出的值通常为 
+string 类型，如果有对象或函数的接收类型为 number 类型，提前作好转换，而不是期望对象、函数可以
+处理多类型的值。</pre>
+
+		<h3 id="h24">24、this 关键字</h3>
+		<p>只在对象构造器、方法和在设定的闭包中使用 this 关键字。this 的语义在此有些误导。它时而指向全局对象（大多数时），时而指向调用者的定义域（在 eval 中），时而指向 DOM 树中的某一节点（当用事件处理绑定到 HTML 属性上时），时而指向一个新创建的对象（在构造器中），还时而指向其它的一些对象（如果函数被 call() 和 apply() 执行和调用时）。</p>
+		<pre>
+正因为它是如此容易地被搞错，请限制它的使用场景：
+  *  在构造函数中
+  *  在对象的方法中（包括由此创建出的闭包内）</pre>
+
+		<h3 id="h25">25、首选函数式风格</h3>
+		<pre>
+	函数式编程让你可以简化代码并缩减维护成本，因为它容易复用，又适当地解耦和更少的依赖。
+         接下来的例子中，在一组数字求和的同一问题上，比较了两种解决方案。第一个例子是经典的程序
+处理，而第二个例子则是采用了函数式编程和 ECMA Script 5.1 的数组方法。
+	例外：往往在重代码性能轻代码维护的情况之下，要选择最优性能的解决方案而非维护性高的方案
+（比如用简单的循环语句代替 forEach）。</pre>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict'; 
+3.  var arr = [10, 3, 7, 9, 100, 20],
+4.      sum = 0,
+5.      i;
+6.  for(i = 0; i < arr.length; i++) {
+7.    sum += arr[i];
+8.  }
+9.  log('The sum of array ' + arr + ' is: ' + sum)
+10.}(window.console.log));</pre></div>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict';
+3.  var arr = [10, 3, 7, 9, 100, 20];
+4.  var sum = arr.reduce(function(prevValue, currentValue) {
+5.    return prevValue + currentValue;
+6.  }, 0);
+7.  log('The sum of array ' + arr + ' is: ' + sum);
+8.}(window.console.log));</pre></div>
+		<p>另一个例子通过某一规则对一个数组进行过滤匹配来创建一个新的数组。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict';
+3.  var numbers = [11, 3, 7, 9, 100, 20, 14, 10],
+4.      numbersGreaterTen = [],
+5.      i;
+6.  for(i = 0; i < numbers.length; i++) {
+7.    if(numbers[i] > 10) {
+8.      numbersGreaterTen.push(numbers[i]);
+9.    }
+10.  }
+11.  log('From the list of numbers ' + numbers + ' only ' + numbersGreaterTen + ' are greater than ten');
+12.}(window.console.log));</pre></div>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict';
+3.  var numbers = [11, 3, 7, 9, 100, 20, 14, 10];
+4.  var numbersGreaterTen = numbers.filter(function(element) {
+5.    return element > 10;
+6.  });
+7.  log('From the list of numbers ' + numbers + ' only ' + numbersGreaterTen + ' are greater than ten');
+8.}(window.console.log));</pre></div>
+
+		<h3 id="h26">26、使用 ECMA Script 5</h3>
+		<p>建议使用 ECMA Script 5 中新增的语法糖和函数。这将简化你的程序，并让你的代码更加灵活和可复用。</p>
+
+		<h3 id="h27">27、数组和对象的属性迭代</h3>
+		<p>用 ECMA5 的迭代方法来迭代数组。使用 Array.forEach 或者如果你要在特殊场合下中断迭代，那就用Array.every。</p>
+		<div class="bg-block color-white"><pre>
+1.(function(log){
+2.  'use strict'; 
+3.  // Iterate over an array and break at a certain condition
+4.  [1, 2, 3, 4, 5].every(function(element, index, arr) {
+5.    log(element + ' at index ' + index + ' in array ' + arr);
+6.    if(index !== 5) {
+7.      return true;
+8.    }
+9.  });
+10.  // Defining a simple javascript object
+11.  var obj = {
+12.    a: 'A',
+13.    b: 'B',
+14.    'c-d-e': 'CDE'
+15.  };
+16.  // Iterating over the object keys
+17.  Object.keys(obj).forEach(function(element, index, arr) {
+18.    log('Key ' + element + ' has value ' + obj[element]);
+19.  });
+20.}(window.console.log));</pre></div>
+
+		<h3 id="h28">28、不要使用 switch</h3>
+		<p>switch 在所有的编程语言中都是个非常错误的难以控制的语句，建议用 if else 来替换它。</p>
+
+		<h3 id="h29">29、数组和对象字面量</h3>
+		<p>用数组和对象字面量来代替数组和对象构造器。数组构造器很容易让人在它的参数上犯错。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.// Length is 3.
+2.var a1 = new Array(x1, x2, x3);
+3.// Length is 2.
+4.var a2 = new Array(x1, x2);
+5.// If x1 is a number and it is a natural number the length will be x1.
+6.// If x1 is a number but not a natural number this will throw an exception.
+7.// Otherwise the array will have one element with x1 as its value.
+8.var a3 = new Array(x1);
+9.// Length is 0.
+10.var a4 = new Array();</pre></div>
+		<p>正因如此，如果将代码传参从两个变为一个，那数组很有可能发生意料不到的长度变化。为避免此类怪异状况，请总是采用更多可读的数组字面量。</p>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.var a = [x1, x2, x3];
+2.var a2 = [x1, x2];
+3.var a3 = [x1];
+4.var a4 = [];</pre></div>
+		<p>对象构造器不会有类似的问题，但是为了可读性和统一性，我们应该使用对象字面量。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.var o = new Object();
+2.var o2 = new Object();
+3.o2.a = 0;
+4.o2.b = 1;
+5.o2.c = 2;
+6.o2['strange key'] = 3;</pre></div>
+		<p>应该写成这样：</p>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.var o = {};
+2.var o2 = {
+3.  a: 0,
+4.  b: 1,
+5.  c: 2,
+6.  'strange key': 3
+7.};</pre></div>
+
+		<h3 id="h30">30、修改内建对象的原型链</h3>
+		<p>修改内建的诸如 Object.prototype 和 Array.prototype 是被严厉禁止的。修改其它的内建对象比如Function.prototype，虽危害没那么大，但始终还是会导致在开发过程中难以 debug 的问题，应当也要避免。</p>
+
+		<h3 id="h31">31、自定义 toString() 方法</h3>
+		<p>你可以通过自定义 toString() 来控制对象字符串化。这很好，但你必须保证你的方法总是成功并不会有其它副作用。如果你的方法达不到这样的标准，那将会引发严重的问题。如果 toString() 调用了一个方法，这个方法做了一个断言[3] ，当断言失败，它可能会输出它所在对象的名称，当然对象也需要调用toString()。</p>
+
+		<h3 id="h32">32、圆括号</h3>
+		<p>一般在语法和语义上真正需要时才谨慎地使用圆括号。不要用在一元操作符上，例如 delete, typeof 和void，或在关键字之后，例如 return, throw, case, new 等。</p>
+
+		<h3 id="h33">33、字符串</h3>
+		<p>统一使用单引号(‘)，不使用双引号(“)。这在创建 HTML 字符串非常有好处：</p>
+		<div class="bg-block color-white"><pre>
+1.    var msg = 'This is some HTML <div class="makes-sense"></div>';</pre></div>
+
+		<h3 id="h34">34、三元条件判断（if 的快捷方法）</h3>
+		<p>用三元操作符分配或返回语句。在比较简单的情况下使用，避免在复杂的情况下使用。没人愿意用 10 行三元操作符把自己的脑子绕晕。</p>
+		<h4>不推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.if(x === 10) {
+2.  return 'valid';
+3.} else {
+4.  return 'invalid';
+5.}</pre></div>
+		<h4>推荐</h4>
+		<div class="bg-block color-white"><pre>
+1.return x === 10 ? 'valid' : 'invalid';</pre></div>
+		<pre>
+[1]：作者指的是采用严格规范的语句写法，从根本上杜绝由分号缺失而引起的代码歧义。
+[2]：中缀符，指的是像 x + y 中的 +。
+[3]：断言一般指程序员在测试测序时的假设，一般是一些布尔表达式，当返回是 true 时，断言为真，代码运行会继续进行；<br />如果条件判断为 false，代码运行停止，你的应用被终止。</pre>
+
+		<h3 id="h35">35、面向对象</h3>
+		<h4>[强制] 类的继承方案，实现时需要修正 constructor。</h4>
+		<pre>
+解释：
+通常使用其他 library 的类继承方案都会进行 constructor 修正。如果是自己实现的类继承方案，需要进行<br /> constructor 修正。
+示例：</pre>
+		<div class="bg-block color-white"><pre>
+1、/** * 构建类之间的继承关系 * * @param {Function} subClass 子类函数 * @param {Function} <br />superClass 父类函数 */function inherits(subClass, superClass) {
+2、   var F = new Function();
+3、    F.prototype = superClass.prototype;
+4、    subClass.prototype = new F();
+5、    subClass.prototype.constructor = subClass;
+6、}</pre></div>
+		<h4>[建议] 声明类时，保证 constructor 的正确性。</h4>
+		<p>示例：</p>
+		<div class="bg-block color-white"><pre>
+1、function Animal(name) {
+2、    this.name = name;
+3、}
+4、// 直接prototype等于对象时，需要修正constructorAnimal.prototype = {
+5、    constructor: Animal,
+6、    jump: function () {
+7、        alert('animal ' + this.name + ' jump');
+8、    }
+9、};
+10、// 这种方式扩展prototype则无需理会constructorAnimal.prototype.jump = function () {
+11、    alert('animal ' + this.name + ' jump');
+12、};</pre></div>
+		<h4>[建议] 属性在构造函数中声明，方法在原型中声明。</h4>
+		<pre>
+解释：
+原型对象的成员被所有实例共享，能节约内存占用。所以编码时我们应该遵守这样的原则：原型对象包含<br />程序不会修改的成员，如方法函数或配置项。</pre>
+		<div class="bg-block color-white"><pre>
+1、function TextNode(value, engine) {
+2、    this.value = value;
+3、    this.engine = engine;
+4、}
+5、TextNode.prototype.clone = function () {
+6、    return this;
+7、};</pre></div>
+
+		<pre>
+[强制] 自定义事件的 事件名 必须全小写。
+解释：
+在 JavaScript 广泛应用的浏览器环境，绝大多数 DOM 事件名称都是全小写的。为了遵循大多数 <br />JavaScript 开发者的习惯，在设计自定义事件时，事件名也应该全小写。
+[强制] 自定义事件只能有一个 event 参数。如果事件需要传递较多信息，应仔细设计事件对象。
+解释：
+一个事件对象的好处有：
+	1.顺序无关，避免事件监听者需要记忆参数顺序。
+	2.每个事件信息都可以根据需要提供或者不提供，更自由。
+	3.扩展方便，未来添加事件信息时，无需考虑会破坏监听器参数形式而无法向后兼容。
+[建议] 设计自定义事件时，应考虑禁止默认行为。
+解释：
+常见禁止默认行为的方式有两种：
+	1.事件监听函数中 return false。
+事件对象中包含禁止默认行为的方法，如 preventDefault。</pre>
+
+	</div>
+</section>
